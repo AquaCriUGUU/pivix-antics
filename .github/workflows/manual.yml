@@ -45,7 +45,8 @@ jobs:
 
     - name: Start Dumping
       run: |
+        apt-get update
+        apt-get install aria2 curl
         echo "${{ github.event.inputs.parameters }}" > parameters.txt
-        ls
-        echo "received arguments: ${{ github.event.inputs.mode }}, ${{ github.event.inputs.artist }}, ${{ github.event.inputs.tags }}"
+        bash pixiv.sh "${{ github.event.inputs.mode }}" "${{ github.event.inputs.artist }}" "${{ github.event.inputs.tags }}"
         
