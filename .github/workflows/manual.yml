@@ -45,6 +45,7 @@ jobs:
 
     - name: Start Dumping
       run: |
+        echo "${{ github.event.inputs.parameters }}" > parameters.txt
         ls
-        echo "received arguments: ${{ github.event.inputs.mode }}, ${{ github.event.inputs.parameters }}, ${{ github.event.inputs.artist }}, ${{ github.event.inputs.tags }}"
+        echo "received arguments: ${{ github.event.inputs.mode }}, ${{ github.event.inputs.artist }}, ${{ github.event.inputs.tags }}"
         
