@@ -12,6 +12,10 @@ on:
         description: 'Dump by Artist ID (artist), Tags (tags), or Artist ID and Tags combined (combined)? '
         default: 'artist'
         required: true
+      parameters:
+        description: 'curl parameters used by pixiv: '
+        default: ''
+        required: true
       artist:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Artist ID: '
@@ -29,14 +33,18 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
-  greet:
+  # This workflow contains a single job called "dump"
+  dump:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
+    - name: Checkout codes
+      uses: actions/checkout@v3
+
+    - name: Start Dumping
       run: |
-        echo "received arguments: ${{ github.event.inputs.mode }}, ${{ github.event.inputs.artist }}, ${{ github.event.inputs.tags }}"
+        ls
+        echo "received arguments: ${{ github.event.inputs.mode }}, ${{ github.event.inputs.parameters }}, ${{ github.event.inputs.artist }}, ${{ github.event.inputs.tags }}"
+        
