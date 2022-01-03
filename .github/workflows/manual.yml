@@ -45,8 +45,8 @@ jobs:
 
     - name: Start Dumping
       run: |
-        apt-get update
-        apt-get install -y aria2 curl
+        sudo apt-get update
+        sudo apt-get install -y aria2 curl
         echo "${{ github.event.inputs.parameters }}" > parameters.txt
         bash pixiv.sh "${{ github.event.inputs.mode }}" "${{ github.event.inputs.artist }}" "${{ github.event.inputs.tags }}"
         
