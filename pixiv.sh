@@ -53,7 +53,7 @@ function pixiv_by_tags { # $1 = tags
             pixiv "$illust"
         done
     done
-    ../aria2c -k 1M -x 8 -s 8 -j 16 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+    ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
     rm list -f
 }
 
