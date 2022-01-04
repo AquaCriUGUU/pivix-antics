@@ -86,15 +86,12 @@ jobs:
     - name: Start Dumping
       if: hashFiles('list')
       run: |
-        sha256sum list
-        echo $GITHUB_WORKSPACE
-        echo "${{ env.barbruh }}"
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list
-        [ -s list2 ] || mv list2 list
+        [ -s "list2" ] && mv list2 list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -105,6 +102,7 @@ jobs:
         rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.rar" "$filename"
     
     - name: Upload "Artifact"
+      if: hashFiles('list')
       uses: actions/upload-artifact@v2
       with:
         name: wiebitte
@@ -113,15 +111,12 @@ jobs:
     - name: Start Dumping
       if: hashFiles('list')
       run: |
-        sha256sum list
-        echo $GITHUB_WORKSPACE
-        echo "${{ env.barbruh }}"
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list
-        [ -s list2 ] || mv list2 list
+        [ -s "list2" ] && mv list2 list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -140,15 +135,12 @@ jobs:
     - name: Start Dumping
       if: hashFiles('list')
       run: |
-        sha256sum list
-        echo $GITHUB_WORKSPACE
-        echo "${{ env.barbruh }}"
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list
-        [ -s list2 ] || mv list2 list
+        [ -s "list2" ] && mv list2 list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -167,15 +159,12 @@ jobs:
     - name: Start Dumping
       if: hashFiles('list')
       run: |
-        sha256sum list
-        echo $GITHUB_WORKSPACE
-        echo "${{ env.barbruh }}"
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list
-        [ -s list2 ] || mv list2 list
+        [ -s "list2" ] && mv list2 list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -194,15 +183,12 @@ jobs:
     - name: Start Dumping
       if: hashFiles('list')
       run: |
-        sha256sum list
-        echo $GITHUB_WORKSPACE
-        echo "${{ env.barbruh }}"
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list
-        [ -s list2 ] || mv list2 list
+        [ -s "list2" ] && mv list2 list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -221,15 +207,12 @@ jobs:
     - name: Start Dumping
       if: hashFiles('list')
       run: |
-        sha256sum list
-        echo $GITHUB_WORKSPACE
-        echo "${{ env.barbruh }}"
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list
-        [ -s list2 ] || mv list2 list
+        [ -s "list2" ] && mv list2 list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -245,3 +228,238 @@ jobs:
       with:
         name: wiebitte.part6
         path: "*.rar"
+# This is a basic workflow that is manually triggered
+
+name: pixiv antics v2
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      mode:
+        description: 'Dump by Artist ID (artist), Tags (tags), Artist ID and Tags combined (combined), or download files in existed list files (list)? '
+        default: 'artist'
+        required: true
+      parameters:
+        description: 'curl parameters used by pixiv: '
+        default: ''
+        required: true
+      loglevel:
+        description: 'Log Level (silent, default, verbose): '
+        default: 'default'
+        required: true
+      artist:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Artist ID: '
+        # Default value if no value is explicitly provided
+        default: ''
+        # Input has to be provided for the workflow to run
+        required: false
+      tags:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Tags: '
+        # Default value if no value is explicitly provided
+        default: ''
+        # Input has to be provided for the workflow to run
+        required: false
+      listurl:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'List URL: '
+        # Default value if no value is explicitly provided
+        default: ''
+        # Input has to be provided for the workflow to run
+        required: false
+      filesperupload:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Files Per Upload: '
+        # Default value if no value is explicitly provided
+        default: '1145'
+        # Input has to be provided for the workflow to run
+        required: true
+        
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "dump"
+  dump:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Checkout Codes
+      uses: actions/checkout@v2
+
+    - name: Start Analyzing
+      run: |
+        wget "https://github.com/P3TERX/Aria2-Pro-Core/releases/download/1.36.0_2021.08.22/aria2-1.36.0-static-linux-amd64.tar.gz"
+        tar -xvzf aria2-1.36.0-static-linux-amd64.tar.gz
+        chmod +x aria2c
+        wget "https://www.rarlab.com/rar/rarlinux-x64-6.0.2.tar.gz"
+        tar -xvzf rarlinux-x64-6.0.2.tar.gz
+        chmod +x rar/rar
+        echo "${{ github.event.inputs.parameters }}" > parameters.txt
+        sed -i "s/..\/aria2c/# ..\/aria2c/g;s/rm list -f/# rm list -f/g" pixiv.sh
+        mkdir wiebitte; cd wiebitte
+        [ "${{ github.event.inputs.mode }}" = "list" ] && aria2c "${{ github.event.inputs.listurl }}" --out "list" || bash ../pixiv.sh "${{ github.event.inputs.loglevel }}" "${{ github.event.inputs.mode }}" "${{ github.event.inputs.artist }}" "${{ github.event.inputs.tags }}"
+        mv list ../
+        cd ..
+    
+    - name: Upload List
+      uses: actions/upload-artifact@v2
+      with:
+        name: list
+        path: "list"
+      
+    - name: Start Dumping
+      if: hashFiles('list')
+      run: |
+        rm *.rar -f
+        [ -d "wiebitte" ] || mkdir wiebitte
+        head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
+        tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
+        rm -f list
+        [ -s "list2" ] && mv list2 list
+        cd wiebitte
+        ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+        rm list -f
+        cd ..
+        time=`date +%y.%m.%d`
+        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
+        mv "wiebitte" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.rar" "$filename"
+    
+    - name: Upload "Artifact"
+      if: hashFiles('list')
+      uses: actions/upload-artifact@v2
+      with:
+        name: wiebitte
+        path: "*.rar"
+
+    - name: Start Dumping Part 2
+      if: hashFiles('list')
+      run: |
+        rm *.rar -f
+        [ -d "wiebitte" ] || mkdir wiebitte
+        head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
+        tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
+        rm -f list
+        [ -s "list2" ] && mv list2 list
+        cd wiebitte
+        ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+        rm list -f
+        cd ..
+        time=`date +%y.%m.%d`
+        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
+        mv "wiebitte" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part2.rar" "$filename"
+    
+    - name: Upload "Artifact" Part 2
+      uses: actions/upload-artifact@v2
+      if: hashFiles('list')
+      with:
+        name: wiebitte.part2
+        path: "*.rar"
+
+    - name: Start Dumping Part 3
+      if: hashFiles('list')
+      run: |
+        rm *.rar -f
+        [ -d "wiebitte" ] || mkdir wiebitte
+        head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
+        tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
+        rm -f list
+        [ -s "list2" ] && mv list2 list
+        cd wiebitte
+        ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+        rm list -f
+        cd ..
+        time=`date +%y.%m.%d`
+        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
+        mv "wiebitte" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part3.rar" "$filename"
+    
+    - name: Upload "Artifact" Part 3
+      uses: actions/upload-artifact@v2
+      if: hashFiles('list')
+      with:
+        name: wiebitte.part3
+        path: "*.rar"
+
+    - name: Start Dumping Part 4
+      if: hashFiles('list')
+      run: |
+        rm *.rar -f
+        [ -d "wiebitte" ] || mkdir wiebitte
+        head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
+        tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
+        rm -f list
+        [ -s "list2" ] && mv list2 list
+        cd wiebitte
+        ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+        rm list -f
+        cd ..
+        time=`date +%y.%m.%d`
+        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
+        mv "wiebitte" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part4.rar" "$filename"
+    
+    - name: Upload "Artifact" Part 4
+      uses: actions/upload-artifact@v2
+      if: hashFiles('list')
+      with:
+        name: wiebitte.part4
+        path: "*.rar"
+
+    - name: Start Dumping Part 5
+      if: hashFiles('list')
+      run: |
+        rm *.rar -f
+        [ -d "wiebitte" ] || mkdir wiebitte
+        head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
+        tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
+        rm -f list
+        [ -s "list2" ] && mv list2 list
+        cd wiebitte
+        ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+        rm list -f
+        cd ..
+        time=`date +%y.%m.%d`
+        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
+        mv "wiebitte" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part5.rar" "$filename"
+    
+    - name: Upload "Artifact" Part 5
+      uses: actions/upload-artifact@v2
+      if: hashFiles('list')
+      with:
+        name: wiebitte.part5
+        path: "*.rar"
+
+    - name: Start Dumping Part 6
+      if: hashFiles('list')
+      run: |
+        rm *.rar -f
+        [ -d "wiebitte" ] || mkdir wiebitte
+        head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
+        tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
+        rm -f list
+        [ -s "list2" ] && mv list2 list
+        cd wiebitte
+        ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+        rm list -f
+        cd ..
+        time=`date +%y.%m.%d`
+        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
+        mv "wiebitte" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part6.rar" "$filename"
+    
+    - name: Upload "Artifact" Part 6
+      uses: actions/upload-artifact@v2
+      if: hashFiles('list')
+      with:
+        name: wiebitte.part6
+        path: "*.rar"
+
