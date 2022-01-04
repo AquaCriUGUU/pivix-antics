@@ -54,15 +54,18 @@ jobs:
         wget "https://github.com/P3TERX/Aria2-Pro-Core/releases/download/1.36.0_2021.08.22/aria2-1.36.0-static-linux-amd64.tar.gz"
         tar -xvzf aria2-1.36.0-static-linux-amd64.tar.gz
         chmod +x aria2c
+        https://www.rarlab.com/rar/rarlinux-x64-6.0.2.tar.gz
+        tar -xvzf rarlinux-x64-6.0.2.tar.gz
+        chmod +x rar/rar
         echo "${{ github.event.inputs.parameters }}" > parameters.txt
         mkdir wiebitte; cd wiebitte
         bash ../pixiv.sh "${{ github.event.inputs.loglevel }}" "${{ github.event.inputs.mode }}" "${{ github.event.inputs.artist }}" "${{ github.event.inputs.tags }}"
         cd ..
         mv "wiebitte" "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"
-        tar -cvf "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}.tar" "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"
+        rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}.rar" "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
       with:
         name: ${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}
-        path: "/home/runner/work/pivix-antics/pivix-antics/wiebitte/${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}.rar"
+        path: "/home/runner/work/pivix-antics/pivix-antics/${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}.rar"
