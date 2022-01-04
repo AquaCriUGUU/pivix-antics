@@ -90,9 +90,7 @@ jobs:
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list; mv list2 list
-        cat wiebitte/list
-        echo
-        cat list
+        sha256sum list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -115,9 +113,7 @@ jobs:
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list; mv list2 list
-        cat wiebitte/list
-        echo
-        cat list
+        sha256sum list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -129,6 +125,7 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
+      if: 
       with:
         name: wiebitte.part2
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
@@ -139,9 +136,7 @@ jobs:
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list; mv list2 list
-        cat wiebitte/list
-        echo
-        cat list
+        sha256sum list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -153,6 +148,7 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
+      if: 
       with:
         name: wiebitte.part3
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
@@ -163,9 +159,7 @@ jobs:
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list; mv list2 list
-        cat wiebitte/list
-        echo
-        cat list
+        sha256sum list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -177,6 +171,7 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
+      if: 
       with:
         name: wiebitte.part4
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
@@ -187,9 +182,7 @@ jobs:
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list; mv list2 list
-        cat wiebitte/list
-        echo
-        cat list
+        sha256sum list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -201,6 +194,7 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
+      if: 
       with:
         name: wiebitte.part5
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
@@ -211,9 +205,7 @@ jobs:
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list; mv list2 list
-        cat wiebitte/list
-        echo
-        cat list
+        sha256sum list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -225,6 +217,7 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
+      if: 
       with:
         name: wiebitte.part6
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
