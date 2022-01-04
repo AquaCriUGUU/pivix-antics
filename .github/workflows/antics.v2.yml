@@ -81,7 +81,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: list
-        path: "/home/runner/work/pivix-antics/pivix-antics/list"
+        path: "list"
       
     - name: Start Dumping
       run: |
@@ -104,15 +104,15 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: wiebitte
-        path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
+        path: "*.rar"
 
     - name: Start Dumping
       env:
-        barbruh: hashFiles('/home/runner/work/pivix-antics/pivix-antics/list')
-      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
+        barbruh: hashFiles('list')
+      if: (!contains(hashFiles('list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       run: |
         echo $GITHUB_WORKSPACE
-        echo ${{ env.barbruh }}
+        echo "${{ env.barbruh }}"
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
@@ -130,17 +130,17 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
-      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
+      if: (!contains(hashFiles('list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       with:
         name: wiebitte.part2
-        path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
+        path: "*.rar"
     - name: Start Dumping
       env:
-        barbruh: hashFiles('/home/runner/work/pivix-antics/pivix-antics/list')
-      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
+        barbruh: hashFiles('list')
+      if: (!contains(hashFiles('list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       run: |
         echo $GITHUB_WORKSPACE
-        echo ${{ env.barbruh }}
+        echo "${{ env.barbruh }}"
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
@@ -158,17 +158,17 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
-      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
+      if: (!contains(hashFiles('list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       with:
         name: wiebitte.part3
-        path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
+        path: "*.rar"
     - name: Start Dumping
       env:
-        barbruh: hashFiles('/home/runner/work/pivix-antics/pivix-antics/list')
-      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
+        barbruh: hashFiles('list')
+      if: (!contains(hashFiles('list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       run: |
         echo $GITHUB_WORKSPACE
-        echo ${{ env.barbruh }}
+        echo "${{ env.barbruh }}"
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
@@ -186,17 +186,17 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
-      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
+      if: (!contains(hashFiles('list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       with:
         name: wiebitte.part4
-        path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
+        path: "*.rar"
     - name: Start Dumping
       env:
-        barbruh: hashFiles('/home/runner/work/pivix-antics/pivix-antics/list')
-      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
+        barbruh: hashFiles('list')
+      if: (!contains(hashFiles('list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       run: |
         echo $GITHUB_WORKSPACE
-        echo ${{ env.barbruh }}
+        echo "${{ env.barbruh }}"
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
@@ -214,17 +214,17 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
-      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
+      if: (!contains(hashFiles('list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       with:
         name: wiebitte.part5
-        path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
+        path: "*.rar"
     - name: Start Dumping
       env:
-        barbruh: hashFiles('/home/runner/work/pivix-antics/pivix-antics/list')
-      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
+        barbruh: hashFiles('list')
+      if: (!contains(hashFiles('list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       run: |
         echo $GITHUB_WORKSPACE
-        echo ${{ env.barbruh }}
+        echo "${{ env.barbruh }}"
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
@@ -242,7 +242,7 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
-      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
+      if: (!contains(hashFiles('list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       with:
         name: wiebitte.part6
-        path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
+        path: "*.rar"
