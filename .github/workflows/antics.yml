@@ -62,7 +62,7 @@ jobs:
         bash ../pixiv.sh "${{ github.event.inputs.loglevel }}" "${{ github.event.inputs.mode }}" "${{ github.event.inputs.artist }}" "${{ github.event.inputs.tags }}"
         cd ..
         mv "wiebitte" "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"
-        ../rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}.rar" "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}.rar" "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
