@@ -86,7 +86,6 @@ jobs:
     - name: Start Dumping
       if: hashFiles('list')
       run: |
-        rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
@@ -108,10 +107,14 @@ jobs:
         name: wiebitte
         path: "*.rar"
 
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        rm *.rar -f
+
     - name: Start Dumping Part 2
       if: hashFiles('list')
       run: |
-        rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
@@ -132,10 +135,15 @@ jobs:
       with:
         name: wiebitte.part2
         path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        rm *.rar -f
+
     - name: Start Dumping Part 3
       if: hashFiles('list')
       run: |
-        rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
@@ -156,10 +164,15 @@ jobs:
       with:
         name: wiebitte.part3
         path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        rm *.rar -f
+
     - name: Start Dumping Part 4
       if: hashFiles('list')
       run: |
-        rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
@@ -180,10 +193,15 @@ jobs:
       with:
         name: wiebitte.part4
         path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        rm *.rar -f
+
     - name: Start Dumping Part 5
       if: hashFiles('list')
       run: |
-        rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
@@ -204,10 +222,15 @@ jobs:
       with:
         name: wiebitte.part5
         path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        rm *.rar -f
+
     - name: Start Dumping Part 6
       if: hashFiles('list')
       run: |
-        rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
@@ -228,3 +251,9 @@ jobs:
       with:
         name: wiebitte.part6
         path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        rm *.rar -f
+
