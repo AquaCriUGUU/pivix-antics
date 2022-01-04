@@ -7,7 +7,7 @@ pixiv dump with github actions i guess:luminethonk:
  - log into pixiv, register an alt if you like, and enable R-18 and probably R-18G in its settings
  - visit a certain pixiv post, like this random fuckeqing pic: [https://www.pixiv.net/artworks/95228011](https://www.pixiv.net/artworks/95228011):thonkeqing:
  - smash F12, switch to the "Network" tab, and refresh
- - pick one network requests, for example the very first one, and right click, copy, copy as cURL (POSIX), at least that's how it's done in firefox
+ - pick one network request, for example the very first one, and right click, copy, copy as cURL (POSIX), at least that's how it's done in firefox
  - and then delete the part like `curl 'https://www.pixiv.net/artworks/95228011'` and `-H 'Accept-Encoding: gzip, deflate, br'` and probably `--compressed`, and then there you go, copy them into the `curl parameters used by pixiv: ` part of github actions antics
 
 # something about antics.v2.yml
@@ -36,4 +36,4 @@ function generateyml() {
 }
 ```
 
-basically you don't need to worry about this, unless 114.514 times was not enough for your pixiv antics, then have fun making it 114514 times, IIYO! KOIYO! use pixiv defloration hentai dumps to smash into these discord and twitter "anime child pronography" theorist faggots' chests! their chests!! (:wiebitte:
+basically you don't need to worry about this, unless 114.514 times was not enough for your pixiv antics, then have fun making it 114514 times, IIYO! KOIYO! use pixiv defloration hentai dumps to smash into these discord and twitter "anime child pornography" theorist faggots' chests! their chests!! (:wiebitte:
