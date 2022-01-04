@@ -97,7 +97,8 @@ jobs:
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
         cd ..
-        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}"; else echo "barbruh"; fi`
+        time=`date +%y.%m.%d`
+        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
         rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.rar" "$filename"
     
@@ -121,7 +122,8 @@ jobs:
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
         cd ..
-        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}"; else echo "barbruh"; fi`
+        time=`date +%y.%m.%d`
+        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
         rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part2.rar" "$filename"
     
@@ -144,7 +146,8 @@ jobs:
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
         cd ..
-        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}"; else echo "barbruh"; fi`
+        time=`date +%y.%m.%d`
+        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
         rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part3.rar" "$filename"
     
@@ -167,7 +170,8 @@ jobs:
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
         cd ..
-        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}"; else echo "barbruh"; fi`
+        time=`date +%y.%m.%d`
+        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
         rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part4.rar" "$filename"
     
@@ -190,7 +194,8 @@ jobs:
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
         cd ..
-        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}"; else echo "barbruh"; fi`
+        time=`date +%y.%m.%d`
+        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
         rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part5.rar" "$filename"
     
@@ -213,7 +218,8 @@ jobs:
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
         cd ..
-        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}"; else echo "barbruh"; fi`
+        time=`date +%y.%m.%d`
+        filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
         rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part6.rar" "$filename"
     
