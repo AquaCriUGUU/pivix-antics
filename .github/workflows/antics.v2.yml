@@ -66,11 +66,11 @@ jobs:
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         cd ..
-        mv "wiebitte" "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}.rar" "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"
+        mv "wiebitte" "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`.rar" "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`"
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
       with:
         name: ${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}
-        path: "/home/runner/work/pivix-antics/pivix-antics/${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}.rar"
+        path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
