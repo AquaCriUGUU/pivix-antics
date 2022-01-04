@@ -107,7 +107,7 @@ jobs:
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
 
     - name: Start Dumping
-      if: !contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
+      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       run: |
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
@@ -126,12 +126,12 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
-      if: !contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
+      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       with:
         name: wiebitte.part2
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
     - name: Start Dumping
-      if: !contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
+      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       run: |
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
@@ -150,12 +150,12 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
-      if: !contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
+      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       with:
         name: wiebitte.part3
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
     - name: Start Dumping
-      if: !contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
+      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       run: |
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
@@ -174,12 +174,12 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
-      if: !contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
+      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       with:
         name: wiebitte.part4
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
     - name: Start Dumping
-      if: !contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
+      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       run: |
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
@@ -198,12 +198,12 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
-      if: !contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
+      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       with:
         name: wiebitte.part5
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
     - name: Start Dumping
-      if: !contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
+      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       run: |
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
@@ -222,7 +222,7 @@ jobs:
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
-      if: !contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
+      if: (!contains(hashFiles('/home/runner/work/pivix-antics/pivix-antics/list'), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'))
       with:
         name: wiebitte.part6
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
