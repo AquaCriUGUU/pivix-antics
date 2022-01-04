@@ -37,3 +37,39 @@ function generateyml() {
 ```
 
 basically you don't need to worry about this, unless 114.514 times was not enough for your pixiv antics, then have fun making it 114514 times, IIYO! KOIYO! use pixiv defloration hentai dumps to smash into these discord and twitter "anime child pornography" theorist faggots' chests! their chests!! (:wiebitte:
+
+# what's new in antics.v3.yml? 
+
+added a new criteria to move into the next download and reupload steps: file size
+
+right now the original "Files Per Upload" became "Files Per Download", basically means files might be downloaded more than once before their size were too big to continue; in each download "Files Per Upload" number of lines would be feeded into aria2 and these lines would be removed from the original list, so whatever the loop is, it would work as usual:luminethonk:
+
+as for "Filesize Per Upload", only when the size of then **exceeded** this number, the file download would be finally stopped, so the final archive size would always be bigger than the number you set, the less you set in "Files Per Upload" the more accurate it would be, but if you set that number too low, multithreading downloading of aria2 would not work properly:barbruh:
+
+and one more thing: try to set "Filesize Per Upload" into 0, in this case it should be reduced into v2, files would be downloaded only once and then immediately repacked, but i would not try it:fischlthonk:
+
+# both v2 and v3 tested on pivix defloration collections:wiebitte:
+
+[https://github.com/AquaCriUGUU/pivix-antics/actions/runs/1652401659](https://github.com/AquaCriUGUU/pivix-antics/actions/runs/1652401659)
+
+[https://github.com/AquaCriUGUU/pivix-antics/actions/runs/1653489286](https://github.com/AquaCriUGUU/pivix-antics/actions/runs/1653489286)
+
+there you go, go piss off these vingin hentai haters:wiebitte:
+
+wait, you gotta use more antics to download these shit in cli; like:
+
+```bash
+function dumpgithubartifacts() {
+    for links in `eval "curl '$1' $parameters" | grep -Eo "/.*artifacts/[0-9]+" | sort | uniq`
+    do
+        for file in `eval "curl -I 'https://github.com$links' $parameters" | grep "[L|l]ocation:" | sed 's/[L/l]ocation: //g;s/[L/l]ocation://g'`
+        do
+            aria2c "$file"
+            for file2 in `ls | grep zip`; do unzip "$file2"; done
+            rm -f *.zip
+        done
+    done
+}
+```
+
+and the parameters of github can use the same way you get with pixiv, you can just create an github alt and any github account can download them:luminethonk:
