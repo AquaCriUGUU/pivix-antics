@@ -44,15 +44,15 @@ added a new criteria to move into the next download and reupload steps: file siz
 
 right now the original "Files Per Upload" became "Files Per Download", basically means files might be downloaded more than once before their size were too big to continue; in each download "Files Per Upload" number of lines would be feeded into aria2 and these lines would be removed from the original list, so whatever the loop is, it would work as usual:luminethonk:
 
-as for "Filesize Per Upload", only when the size of then **exceeded** this number, the file download would be finally stopped, so the final archive size would always be bigger than the number you set, the less you set in "Files Per Upload" the more accurate it would be, but if you set that number too low, multithreading downloading of aria2 would not work properly:barbruh:
+as for "Filesize Per Upload", only when the size of them **exceeded** this number, the file download would be finally stopped, so the final archive size would always be bigger than the number you set, the less you set in "Files Per Upload" the more accurate it would be, but if you set that number too low, multithreading downloading of aria2 would not work properly, so it needs to be at least 64 and better be over 256:barbruh:
 
-and one more thing: try to set "Filesize Per Upload" into 0, in this case it should be reduced into v2, files would be downloaded only once and then immediately repacked, but i would not try it:fischlthonk:
+and one more thing: try setting "Filesize Per Upload" into 0, in this case it should be reduced into v2, files would be downloaded only once and then immediately repacked, but i would not try it:fischlthonk:
 
 # both v2 and v3 tested on pivix defloration collections:wiebitte:
 
-[https://github.com/AquaCriUGUU/pivix-antics/actions/runs/1652401659](https://github.com/AquaCriUGUU/pivix-antics/actions/runs/1652401659)
+v2[https://github.com/AquaCriUGUU/pivix-antics/actions/runs/1652401659](https://github.com/AquaCriUGUU/pivix-antics/actions/runs/1652401659)
 
-[https://github.com/AquaCriUGUU/pivix-antics/actions/runs/1653489286](https://github.com/AquaCriUGUU/pivix-antics/actions/runs/1653489286)
+v3[https://github.com/AquaCriUGUU/pivix-antics/actions/runs/1653489286](https://github.com/AquaCriUGUU/pivix-antics/actions/runs/1653489286)
 
 there you go, go piss off these vingin hentai haters:wiebitte:
 
@@ -72,4 +72,4 @@ function dumpgithubartifacts() {
 }
 ```
 
-and the parameters of github can use the same way you get with pixiv, you can just create an github alt and any github account can download them:luminethonk:
+and the parameters of github can use the same way you get with pixiv, you can just create a github alt and any github account can download them:luminethonk:
