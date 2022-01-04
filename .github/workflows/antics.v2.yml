@@ -34,6 +34,14 @@ on:
         default: ''
         # Input has to be provided for the workflow to run
         required: false
+      filesperupload:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Files Per Upload: '
+        # Default value if no value is explicitly provided
+        default: '1145'
+        # Input has to be provided for the workflow to run
+        required: true
+        
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -59,16 +67,20 @@ jobs:
         sed -i "s/..\/aria2c/# ..\/aria2c/g;s/rm list -f/# rm list -f/g" pixiv.sh
         mkdir wiebitte; cd wiebitte
         bash ../pixiv.sh "${{ github.event.inputs.loglevel }}" "${{ github.event.inputs.mode }}" "${{ github.event.inputs.artist }}" "${{ github.event.inputs.tags }}"
+        mv list ../
         cd ..
     
     - name: Upload List
       uses: actions/upload-artifact@v2
       with:
         name: list
-        path: "/home/runner/work/pivix-antics/pivix-antics/wiebitte/list"
+        path: "/home/runner/work/pivix-antics/pivix-antics/list"
       
     - name: Start Dumping
       run: |
+        rm *.rar -f
+        head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
+        tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list #  use such stupid method to spilt aria2 list files into these lines, and the remaining lines:barbruh:
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         cd ..
@@ -80,3 +92,72 @@ jobs:
       with:
         name: wiebitte
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
+
+    - name: Start Dumping
+      run: |
+        rm *.rar -f
+        head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
+        tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list #  use such stupid method to spilt aria2 list files into these lines, and the remaining lines:barbruh:
+        cd wiebitte
+        ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+        cd ..
+        mv "wiebitte" "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`.rar" "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`"
+    
+    - name: Upload "Artifact"
+      uses: actions/upload-artifact@v2
+      with:
+        name: wiebitte
+        path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
+
+    - name: Start Dumping
+      run: |
+        rm *.rar -f
+        head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
+        tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list #  use such stupid method to spilt aria2 list files into these lines, and the remaining lines:barbruh:
+        cd wiebitte
+        ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+        cd ..
+        mv "wiebitte" "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`.rar" "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`"
+    
+    - name: Upload "Artifact"
+      uses: actions/upload-artifact@v2
+      with:
+        name: wiebitte
+        path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
+
+    - name: Start Dumping
+      run: |
+        rm *.rar -f
+        head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
+        tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list #  use such stupid method to spilt aria2 list files into these lines, and the remaining lines:barbruh:
+        cd wiebitte
+        ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+        cd ..
+        mv "wiebitte" "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`.rar" "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`"
+    
+    - name: Upload "Artifact"
+      uses: actions/upload-artifact@v2
+      with:
+        name: wiebitte
+        path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
+
+    - name: Start Dumping
+      run: |
+        rm *.rar -f
+        head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
+        tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list #  use such stupid method to spilt aria2 list files into these lines, and the remaining lines:barbruh:
+        cd wiebitte
+        ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+        cd ..
+        mv "wiebitte" "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`.rar" "`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; else     echo "barbruh"; fi`"
+    
+    - name: Upload "Artifact"
+      uses: actions/upload-artifact@v2
+      with:
+        name: wiebitte
+        path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
+
