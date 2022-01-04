@@ -102,7 +102,7 @@ jobs:
         rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.rar" "$filename"
     
     - name: Upload "Artifact"
-      if: hashFiles('list')
+      if: hashFiles('*.rar')
       uses: actions/upload-artifact@v2
       with:
         name: wiebitte
@@ -128,7 +128,7 @@ jobs:
     
     - name: Upload "Artifact" Part 2
       uses: actions/upload-artifact@v2
-      if: hashFiles('list')
+      if: hashFiles('*.rar')
       with:
         name: wiebitte.part2
         path: "*.rar"
@@ -152,7 +152,7 @@ jobs:
     
     - name: Upload "Artifact" Part 3
       uses: actions/upload-artifact@v2
-      if: hashFiles('list')
+      if: hashFiles('*.rar')
       with:
         name: wiebitte.part3
         path: "*.rar"
@@ -176,7 +176,7 @@ jobs:
     
     - name: Upload "Artifact" Part 4
       uses: actions/upload-artifact@v2
-      if: hashFiles('list')
+      if: hashFiles('*.rar')
       with:
         name: wiebitte.part4
         path: "*.rar"
@@ -200,7 +200,7 @@ jobs:
     
     - name: Upload "Artifact" Part 5
       uses: actions/upload-artifact@v2
-      if: hashFiles('list')
+      if: hashFiles('*.rar')
       with:
         name: wiebitte.part5
         path: "*.rar"
@@ -224,7 +224,7 @@ jobs:
     
     - name: Upload "Artifact" Part 6
       uses: actions/upload-artifact@v2
-      if: hashFiles('list')
+      if: hashFiles('*.rar')
       with:
         name: wiebitte.part6
         path: "*.rar"
