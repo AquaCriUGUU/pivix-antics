@@ -16,6 +16,10 @@ on:
         description: 'curl parameters used by pixiv: '
         default: ''
         required: true
+      loglevel:
+        description: 'Log Level (silent, default, verbose): '
+        default: 'default'
+        required: true
       artist:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Artist ID: '
@@ -40,7 +44,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Checkout codes
+    - name: Checkout Codes
       uses: actions/checkout@v2
 
     - name: Start Dumping
@@ -52,10 +56,13 @@ jobs:
         chmod +x aria2c
         echo "${{ github.event.inputs.parameters }}" > parameters.txt
         mkdir wiebitte; cd wiebitte
-        bash ../pixiv.sh "${{ github.event.inputs.mode }}" "${{ github.event.inputs.artist }}" "${{ github.event.inputs.tags }}"
+        bash ../pixiv.sh "${{ github.event.inputs.loglevel }}" "${{ github.event.inputs.mode }}" "${{ github.event.inputs.artist }}" "${{ github.event.inputs.tags }}"
+        cd ..
+        mv "wiebitte" "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"
+        tar -cvf "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}.tar" "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"
     
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
       with:
-        name: wiebitte
-        path: /home/runner/work/pivix-antics/pivix-antics/wiebitte
+        name: ${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}
+        path: "/home/runner/work/pivix-antics/pivix-antics/wiebitte/${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}.rar"
