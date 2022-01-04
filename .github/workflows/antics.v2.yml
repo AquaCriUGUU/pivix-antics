@@ -61,6 +61,12 @@ jobs:
         bash ../pixiv.sh "${{ github.event.inputs.loglevel }}" "${{ github.event.inputs.mode }}" "${{ github.event.inputs.artist }}" "${{ github.event.inputs.tags }}"
         cd ..
     
+    - name: Upload List
+      uses: actions/upload-artifact@v2
+      with:
+        name: list
+        path: "/home/runner/work/pivix-antics/pivix-antics/wiebitte/list"
+      
     - name: Start Dumping
       run: |
         cd wiebitte
@@ -72,5 +78,5 @@ jobs:
     - name: Upload "Artifact"
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}
+        name: wiebitte
         path: "/home/runner/work/pivix-antics/pivix-antics/*.rar"
