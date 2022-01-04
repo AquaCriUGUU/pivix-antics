@@ -84,6 +84,7 @@ jobs:
         path: "list"
       
     - name: Start Dumping
+      if: hashFiles('list')
       run: |
         sha256sum list
         echo $GITHUB_WORKSPACE
@@ -93,6 +94,7 @@ jobs:
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
         rm -f list
+        [ -s list2 ] || mv list2 list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -109,8 +111,6 @@ jobs:
         path: "*.rar"
 
     - name: Start Dumping
-      env:
-        barbruh: hashFiles('list')
       if: hashFiles('list')
       run: |
         sha256sum list
@@ -120,7 +120,8 @@ jobs:
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
-        rm -f list; mv list2 list
+        rm -f list
+        [ -s list2 ] || mv list2 list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -137,8 +138,6 @@ jobs:
         name: wiebitte.part2
         path: "*.rar"
     - name: Start Dumping
-      env:
-        barbruh: hashFiles('list')
       if: hashFiles('list')
       run: |
         sha256sum list
@@ -148,7 +147,8 @@ jobs:
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
-        rm -f list; mv list2 list
+        rm -f list
+        [ -s list2 ] || mv list2 list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -165,8 +165,6 @@ jobs:
         name: wiebitte.part3
         path: "*.rar"
     - name: Start Dumping
-      env:
-        barbruh: hashFiles('list')
       if: hashFiles('list')
       run: |
         sha256sum list
@@ -176,7 +174,8 @@ jobs:
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
-        rm -f list; mv list2 list
+        rm -f list
+        [ -s list2 ] || mv list2 list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -193,8 +192,6 @@ jobs:
         name: wiebitte.part4
         path: "*.rar"
     - name: Start Dumping
-      env:
-        barbruh: hashFiles('list')
       if: hashFiles('list')
       run: |
         sha256sum list
@@ -204,7 +201,8 @@ jobs:
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
-        rm -f list; mv list2 list
+        rm -f list
+        [ -s list2 ] || mv list2 list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -221,8 +219,6 @@ jobs:
         name: wiebitte.part5
         path: "*.rar"
     - name: Start Dumping
-      env:
-        barbruh: hashFiles('list')
       if: hashFiles('list')
       run: |
         sha256sum list
@@ -232,7 +228,8 @@ jobs:
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list2
-        rm -f list; mv list2 list
+        rm -f list
+        [ -s list2 ] || mv list2 list
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
