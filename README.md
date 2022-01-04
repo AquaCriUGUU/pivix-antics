@@ -36,4 +36,4 @@ function generateyml() {
 }
 ```
 
-basically you don't need to worry about this, unless 114.514 times was not enough for your pixiv dumpin', then have fun making it 114514 times, IIYO! KOIYO! use pixiv defloration hentai dumps to smash into these discord and twitter "anime child pronography" theorist faggots' chests! their chests!! (:wiebitte:
+basically you don't need to worry about this, unless 114.514 times was not enough for your pixiv antics, then have fun making it 114514 times, IIYO! KOIYO! use pixiv defloration hentai dumps to smash into these discord and twitter "anime child pronography" theorist faggots' chests! their chests!! (:wiebitte:
