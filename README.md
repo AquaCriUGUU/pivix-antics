@@ -16,8 +16,8 @@ this antics was intended to upload certain number of pics each time, too bad git
 
 but at least it could stop certain steps if certain file doesn't exist on working directory, so i came up with another bash antics: 
 
- - make a template like yml file called antics.v2.original.yml to provide basic functions, the last steps are basically identical to the three steps above them, but they renamed the rar archive with a ".part" to indicate that they're parts 
- - and then use bash antics to copy these three steps as many times as i want, like 114.514 times in the final antics.v2.yml file
+ - make a template like yml file called antics.v2.original.yml to provide basic functions, the last three steps are basically identical to the three steps above them, but they renamed the rar archive with a ".part" to indicate that they're parts
+ - and then use bash antics to copy these three steps as many times as i want, like 114.514 times in the final antics.v2.yml file, so if you see that file soooooooooooooooooooooooooooooooo long, pls don't be surpirsed:luminethonk:
  - but don't worry, when there's indeed no more files to download, the remaining steps would be skipped anyway
 
 well, the bash antics i used was like: 
