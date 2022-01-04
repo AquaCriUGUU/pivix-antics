@@ -25,7 +25,7 @@ function pixiv_by_artist { # $1 = artist id
         [ "$loglevel" = "silent" ] || echo -e "  \e[36mProgress \e[32m$current\e[36m/$total, Processin' illustration id \e[32m$illust\e[36m: \e[0m"
         pixiv "$illust"
     done
-    aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+    ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
     rm list -f
 }
 
@@ -43,7 +43,7 @@ function pixiv_by_artist_and_tags { # $1 = artist id, $2 = tags
             pixiv "$illust"
         done
     done
-    aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+    ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
     rm list -f
 }
 
@@ -60,7 +60,7 @@ function pixiv_by_tags { # $1 = tags
             pixiv "$illust"
         done
     done
-    aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
+    ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
     rm list -f
 }
 
