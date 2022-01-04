@@ -81,8 +81,12 @@ jobs:
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
-        echo "$((${{ github.event.inputs.filesperupload }}+1))"
+        echo $((${{ github.event.inputs.filesperupload }}+1))
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list
+        cat wiebitte/list
+        echo
+        cat list
+        echo
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
@@ -101,8 +105,12 @@ jobs:
         rm *.rar -f
         [ -d "wiebitte" ] || mkdir wiebitte
         head -${{ github.event.inputs.filesperupload }} list > wiebitte/list
-        echo "$((${{ github.event.inputs.filesperupload }}+1))"
+        echo $((${{ github.event.inputs.filesperupload }}+1))
         tail +$((${{ github.event.inputs.filesperupload }}+1)) list > list
+        cat wiebitte/list
+        echo
+        cat list
+        echo
         cd wiebitte
         ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
         rm list -f
