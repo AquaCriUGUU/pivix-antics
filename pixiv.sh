@@ -22,7 +22,7 @@ function pixiv_by_artist { # $1 = artist id
     for illust in `eval "curl 'https://www.pixiv.net/ajax/user/$1/profile/all?lang=en' $parameters" | grep -Po '"illusts":{.*?}' | sed 's/"/\n/g' | grep -E "[0-9]+"`
     do
         let current++
-        echo -e "  \e[36mProgress \e[32m$current\e[36m/$total, Processin' illustration id \e[32m$illust\e[36m: \e[0m"
+        [ "$1" = "silent" ] || echo -e "  \e[36mProgress \e[32m$current\e[36m/$total, Processin' illustration id \e[32m$illust\e[36m: \e[0m"
         pixiv "$illust"
     done
     aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list
@@ -39,7 +39,7 @@ function pixiv_by_artist_and_tags { # $1 = artist id, $2 = tags
         for illust in `eval "curl 'https://www.pixiv.net/ajax/user/$1/illusts/tag?tag=$tags&offset=$offset&limit=48&lang=en' $parameters" | sed 's/},{/},\n{/g' | grep -Eo '"id":"[0-9]+","title"' | grep -Eo "[0-9]+"`
         do
             let current++
-            echo -e "  \e[36mProgress \e[32m$current\e[36m/$total, Processin' illustration id \e[32m$illust\e[36m: \e[0m"
+            [ "$1" = "silent" ] || echo -e "  \e[36mProgress \e[32m$current\e[36m/$total, Processin' illustration id \e[32m$illust\e[36m: \e[0m"
             pixiv "$illust"
         done
     done
@@ -56,7 +56,7 @@ function pixiv_by_tags { # $1 = tags
         for illust in `eval "curl 'https://www.pixiv.net/ajax/search/artworks/$tags?word=$tags&order=date_d&mode=all&p=$page&s_mode=s_tag&type=all&lang=en' $parameters" | sed 's/},{/},\n{/g' | grep -Eo '"id":"[0-9]+","title"' | grep -Eo "[0-9]+"`
         do
             let current++
-            echo -e "  \e[36mProgress \e[32m$current\e[36m/$total, Processin' illustration id \e[32m$illust\e[36m: \e[0m"
+            [ "$1" = "silent" ] || echo -e "  \e[36mProgress \e[32m$current\e[36m/$total, Processin' illustration id \e[32m$illust\e[36m: \e[0m"
             pixiv "$illust"
         done
     done
