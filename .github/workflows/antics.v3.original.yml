@@ -139,4 +139,3 @@ jobs:
         echo
         stat *
         rm *.rar -f
-        barbruh
