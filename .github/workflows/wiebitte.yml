@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        token: ${{ secret.AquaCriUGUU }}
+        token: ${{ secrets.AquaCriUGUU }}
 
     - name: AquaCriUGUU
       run: |
