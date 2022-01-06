@@ -101,7 +101,7 @@ jobs:
       continue-on-error: true
       run: |
         sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/{{{{ github.event.inputs.mode----/{{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/.partplaceholder//g' dumptemplate.sh > dump.sh
-        bash dump.sh; rm -f dump.sh
+        bash dump.sh; cat dump.sh; rm -f dump.sh
     
     - name: Upload "Artifact"
       if: hashFiles('*.rar')
@@ -113,7 +113,6 @@ jobs:
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
-        cat dump.sh
         ls -lh
         stat *
         rm *.rar -f
@@ -123,8 +122,8 @@ jobs:
       continue-on-error: true
       run: |
         sed 's/{{{{ github.event.inputs.quota----/{{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/{{{{ github.event.inputs.mode----/{{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g' dumptemplate.sh > dump.sh
-        bash dump.sh; rm -f dump.sh
-    
+        bash dump.sh; cat dump.sh; rm -f dump.sh
+        
     - name: Upload "Artifact" Partplaceholder
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
@@ -135,7 +134,6 @@ jobs:
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
-        cat dump.sh
         ls -lh
         stat *
         rm *.rar -f
