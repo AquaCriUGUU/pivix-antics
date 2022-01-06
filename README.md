@@ -25,13 +25,15 @@ well, the bash antics i used was like:
 ```bash
 function generateyml() {
     [ "$1" ] && iteration="$1" || iteration=20
-    originalfile="~/pivix-antics/.github/workflows/antics.v2.original.yml"
-    resultfile="~/pivix-antics/.github/workflows/antics.v2.yml"
+    originalfile="/cygdrive/k/Documents/antics.v3.original.yml"
+    resultfile="/cygdrive/z/antics.v3.yml"
     linenum=`cat "$originalfile" | grep -n "Start Dumping" | tail -1 | grep -Eo "[0-9]+"`
-    cat "$originalfile" | head -"$((linenum-1))" > "$resultfile"
+    cat "$originalfile" | head -"$((linenum-1))" | sed "s/pixiv antics v3 (original/pixiv antics v3/g" > "$resultfile"
     for iter in `seq 2 $iteration`
     do
-        cat "$originalfile" | tail +"$((linenum))" | sed "s/partplaceholder/part$iter/g;s/Partplaceholder/Part $iter/g" >> "$resultfile"
+        cat "$originalfile" | tail +"$((linenum))" | sed "s/partPlaceholder/part$iter/g;s/Partplaceholder/Part $iter/g" >> "$resultfile"
+        echo >> "$resultfile"
+        echo >> "$resultfile"
     done
 }
 ```
