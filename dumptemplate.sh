@@ -1,9 +1,9 @@
 [ -d "wiebitte" ] || mkdir wiebitte
-while ( [ `du -s "wiebitte" | grep -Eo "[0-9]*\s" | grep -Eo "[0-9]*"` -lt $((${{{{ github.event.inputs.quota }}}}*1024)) ] && [ -s "list" ] )
+while ( [ `du -s "wiebitte" | grep -Eo "[0-9]*\s" | grep -Eo "[0-9]*"` -lt $((____github.event.inputs.quota----*1024)) ] && [ -s "list" ] )
 do 
     echo `du -s "wiebitte" | grep -Eo "[0-9]*\s" | grep -Eo "[0-9]*"`
-    head -${{{{ github.event.inputs.filesperdownload }}}} list > wiebitte/list
-    tail +$((${{{{ github.event.inputs.filesperdownload }}}}+1)) list > list2
+    head -____github.event.inputs.filesperdownload---- list > wiebitte/list
+    tail +$((____github.event.inputs.filesperdownload----+1)) list > list2
     rm -f list
     [ -s "list2" ] && mv list2 list
     cd wiebitte
@@ -12,23 +12,23 @@ do
     cd ..
 done
 
-if [ "${{{{ github.event.inputs.listfilename }}}}" ]
+if [ "____github.event.inputs.listfilename----" ]
 then
-    echo "${{{{ github.event.inputs.listfilename }}}}"
+    echo "____github.event.inputs.listfilename----"
 else
-    if [ "${{{{ github.event.inputs.mode }}}}" = "artist" ]
+    if [ "____github.event.inputs.mode----" = "artist" ]
     then
-        filename="${{{{ github.event.inputs.mode }}}}.${{{{ github.event.inputs.artist }}}}"
-    elif [ "${{{{ github.event.inputs.mode }}}}" = "tags" ]
+        filename="____github.event.inputs.mode----.____github.event.inputs.artist----"
+    elif [ "____github.event.inputs.mode----" = "tags" ]
     then
-        filename="${{{{ github.event.inputs.mode }}}}.${{{{ github.event.inputs.tags }}}}"
-    elif [ "${{{{ github.event.inputs.mode }}}}" = "combined" ]
+        filename="____github.event.inputs.mode----.____github.event.inputs.tags----"
+    elif [ "____github.event.inputs.mode----" = "combined" ]
     then
-        filename="${{{{ github.event.inputs.mode }}}}.${{{{ github.event.inputs.artist }}}}.${{{{ github.event.inputs.tags }}}}"
-    elif [ "${{{{ github.event.inputs.mode }}}}" = "list" ]
+        filename="____github.event.inputs.mode----.____github.event.inputs.artist----.____github.event.inputs.tags----"
+    elif [ "____github.event.inputs.mode----" = "list" ]
     then
         time=`date +%y.%m.%d`
-        filename="${{{{ github.event.inputs.mode }}}}.$time"
+        filename="____github.event.inputs.mode----.$time"
     else
         filename="barbruh"
     fi
