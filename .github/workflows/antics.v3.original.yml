@@ -98,6 +98,7 @@ jobs:
       
     - name: Start Dumping
       if: hashFiles('list')
+      continue-on-error: true
       run: |
         [ -d "wiebitte" ] || mkdir wiebitte
         while ( [ `du -s "wiebitte" | grep -Eo "[0-9]*\s" | grep -Eo "[0-9]*"` -lt $((${{ github.event.inputs.quota }}*1024)) ] && [ -s "list" ] ); do echo `du -s "wiebitte" | grep -Eo "[0-9]*\s" | grep -Eo "[0-9]*"`; head -${{ github.event.inputs.filesperdownload }} list > wiebitte/list; tail +$((${{ github.event.inputs.filesperdownload }}+1)) list > list2; rm -f list; [ -s "list2" ] && mv list2 list; cd wiebitte; ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list; rm list -f; cd ..; done
@@ -120,6 +121,7 @@ jobs:
 
     - name: Start Dumping Partplaceholder
       if: hashFiles('list')
+      continue-on-error: true
       run: |
         [ -d "wiebitte" ] || mkdir wiebitte
         while ( [ `du -s "wiebitte" | grep -Eo "[0-9]*\s" | grep -Eo "[0-9]*"` -lt $((${{ github.event.inputs.quota }}*1024)) ] && [ -s "list" ] ); do echo `du -s "wiebitte" | grep -Eo "[0-9]*\s" | grep -Eo "[0-9]*"`; head -${{ github.event.inputs.filesperdownload }} list > wiebitte/list; tail +$((${{ github.event.inputs.filesperdownload }}+1)) list > list2; rm -f list; [ -s "list2" ] && mv list2 list; cd wiebitte; ../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false --header "Referer: https://www.pixiv.net/artworks/1145141919810" -i list; rm list -f; cd ..; done
@@ -138,4 +140,3 @@ jobs:
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
-
