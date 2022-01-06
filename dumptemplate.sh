@@ -36,4 +36,4 @@ fi
 
 mv "wiebitte" "$filename"
 rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
-exit 0
+ext 0
