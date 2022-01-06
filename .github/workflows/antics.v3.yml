@@ -114,6 +114,7 @@ jobs:
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
 
@@ -128,15 +129,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part2
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 3
       if: hashFiles('list')
@@ -149,15 +152,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part3
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 4
       if: hashFiles('list')
@@ -170,15 +175,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part4
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 5
       if: hashFiles('list')
@@ -191,15 +198,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part5
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 6
       if: hashFiles('list')
@@ -212,15 +221,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part6
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 7
       if: hashFiles('list')
@@ -233,15 +244,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part7
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 8
       if: hashFiles('list')
@@ -254,15 +267,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part8
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 9
       if: hashFiles('list')
@@ -275,15 +290,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part9
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 10
       if: hashFiles('list')
@@ -296,15 +313,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part10
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 11
       if: hashFiles('list')
@@ -317,15 +336,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part11
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 12
       if: hashFiles('list')
@@ -338,15 +359,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part12
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 13
       if: hashFiles('list')
@@ -359,15 +382,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part13
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 14
       if: hashFiles('list')
@@ -380,15 +405,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part14
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 15
       if: hashFiles('list')
@@ -401,15 +428,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part15
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 16
       if: hashFiles('list')
@@ -422,15 +451,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part16
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 17
       if: hashFiles('list')
@@ -443,15 +474,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part17
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 18
       if: hashFiles('list')
@@ -464,15 +497,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part18
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 19
       if: hashFiles('list')
@@ -485,15 +520,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part19
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 20
       if: hashFiles('list')
@@ -506,15 +543,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part20
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 21
       if: hashFiles('list')
@@ -527,15 +566,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part21
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 22
       if: hashFiles('list')
@@ -548,15 +589,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part22
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 23
       if: hashFiles('list')
@@ -569,15 +612,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part23
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 24
       if: hashFiles('list')
@@ -590,15 +635,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part24
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 25
       if: hashFiles('list')
@@ -611,15 +658,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part25
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 26
       if: hashFiles('list')
@@ -632,15 +681,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part26
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 27
       if: hashFiles('list')
@@ -653,15 +704,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part27
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 28
       if: hashFiles('list')
@@ -674,15 +727,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part28
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 29
       if: hashFiles('list')
@@ -695,15 +750,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part29
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 30
       if: hashFiles('list')
@@ -716,15 +773,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part30
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 31
       if: hashFiles('list')
@@ -737,15 +796,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part31
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 32
       if: hashFiles('list')
@@ -758,15 +819,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part32
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 33
       if: hashFiles('list')
@@ -779,15 +842,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part33
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 34
       if: hashFiles('list')
@@ -800,15 +865,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part34
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 35
       if: hashFiles('list')
@@ -821,15 +888,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part35
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 36
       if: hashFiles('list')
@@ -842,15 +911,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part36
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 37
       if: hashFiles('list')
@@ -863,15 +934,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part37
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 38
       if: hashFiles('list')
@@ -884,15 +957,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part38
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 39
       if: hashFiles('list')
@@ -905,15 +980,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part39
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 40
       if: hashFiles('list')
@@ -926,15 +1003,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part40
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 41
       if: hashFiles('list')
@@ -947,15 +1026,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part41
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 42
       if: hashFiles('list')
@@ -968,15 +1049,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part42
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 43
       if: hashFiles('list')
@@ -989,15 +1072,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part43
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 44
       if: hashFiles('list')
@@ -1010,15 +1095,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part44
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 45
       if: hashFiles('list')
@@ -1031,15 +1118,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part45
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 46
       if: hashFiles('list')
@@ -1052,15 +1141,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part46
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 47
       if: hashFiles('list')
@@ -1073,15 +1164,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part47
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 48
       if: hashFiles('list')
@@ -1094,15 +1187,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part48
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 49
       if: hashFiles('list')
@@ -1115,15 +1210,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part49
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 50
       if: hashFiles('list')
@@ -1136,15 +1233,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part50
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 51
       if: hashFiles('list')
@@ -1157,15 +1256,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part51
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 52
       if: hashFiles('list')
@@ -1178,15 +1279,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part52
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 53
       if: hashFiles('list')
@@ -1199,15 +1302,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part53
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 54
       if: hashFiles('list')
@@ -1220,15 +1325,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part54
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 55
       if: hashFiles('list')
@@ -1241,15 +1348,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part55
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 56
       if: hashFiles('list')
@@ -1262,15 +1371,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part56
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 57
       if: hashFiles('list')
@@ -1283,15 +1394,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part57
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 58
       if: hashFiles('list')
@@ -1304,15 +1417,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part58
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 59
       if: hashFiles('list')
@@ -1325,15 +1440,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part59
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 60
       if: hashFiles('list')
@@ -1346,15 +1463,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part60
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 61
       if: hashFiles('list')
@@ -1367,15 +1486,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part61
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 62
       if: hashFiles('list')
@@ -1388,15 +1509,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part62
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 63
       if: hashFiles('list')
@@ -1409,15 +1532,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part63
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 64
       if: hashFiles('list')
@@ -1430,15 +1555,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part64
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 65
       if: hashFiles('list')
@@ -1451,15 +1578,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part65
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 66
       if: hashFiles('list')
@@ -1472,15 +1601,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part66
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 67
       if: hashFiles('list')
@@ -1493,15 +1624,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part67
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 68
       if: hashFiles('list')
@@ -1514,15 +1647,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part68
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 69
       if: hashFiles('list')
@@ -1535,15 +1670,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part69
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 70
       if: hashFiles('list')
@@ -1556,15 +1693,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part70
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 71
       if: hashFiles('list')
@@ -1577,15 +1716,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part71
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 72
       if: hashFiles('list')
@@ -1598,15 +1739,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part72
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 73
       if: hashFiles('list')
@@ -1619,15 +1762,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part73
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 74
       if: hashFiles('list')
@@ -1640,15 +1785,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part74
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 75
       if: hashFiles('list')
@@ -1661,15 +1808,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part75
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 76
       if: hashFiles('list')
@@ -1682,15 +1831,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part76
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 77
       if: hashFiles('list')
@@ -1703,15 +1854,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part77
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 78
       if: hashFiles('list')
@@ -1724,15 +1877,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part78
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 79
       if: hashFiles('list')
@@ -1745,15 +1900,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part79
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 80
       if: hashFiles('list')
@@ -1766,15 +1923,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part80
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 81
       if: hashFiles('list')
@@ -1787,15 +1946,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part81
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 82
       if: hashFiles('list')
@@ -1808,15 +1969,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part82
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 83
       if: hashFiles('list')
@@ -1829,15 +1992,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part83
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 84
       if: hashFiles('list')
@@ -1850,15 +2015,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part84
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 85
       if: hashFiles('list')
@@ -1871,15 +2038,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part85
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 86
       if: hashFiles('list')
@@ -1892,15 +2061,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part86
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 87
       if: hashFiles('list')
@@ -1913,15 +2084,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part87
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 88
       if: hashFiles('list')
@@ -1934,15 +2107,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part88
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 89
       if: hashFiles('list')
@@ -1955,15 +2130,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part89
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 90
       if: hashFiles('list')
@@ -1976,15 +2153,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part90
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 91
       if: hashFiles('list')
@@ -1997,15 +2176,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part91
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 92
       if: hashFiles('list')
@@ -2018,15 +2199,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part92
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 93
       if: hashFiles('list')
@@ -2039,15 +2222,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part93
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 94
       if: hashFiles('list')
@@ -2060,15 +2245,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part94
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 95
       if: hashFiles('list')
@@ -2081,15 +2268,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part95
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 96
       if: hashFiles('list')
@@ -2102,15 +2291,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part96
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 97
       if: hashFiles('list')
@@ -2123,15 +2314,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part97
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 98
       if: hashFiles('list')
@@ -2144,15 +2337,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part98
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 99
       if: hashFiles('list')
@@ -2165,15 +2360,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part99
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 100
       if: hashFiles('list')
@@ -2186,15 +2383,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part100
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 101
       if: hashFiles('list')
@@ -2207,15 +2406,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part101
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 102
       if: hashFiles('list')
@@ -2228,15 +2429,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part102
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 103
       if: hashFiles('list')
@@ -2249,15 +2452,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part103
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 104
       if: hashFiles('list')
@@ -2270,15 +2475,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part104
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 105
       if: hashFiles('list')
@@ -2291,15 +2498,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part105
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 106
       if: hashFiles('list')
@@ -2312,15 +2521,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part106
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 107
       if: hashFiles('list')
@@ -2333,15 +2544,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part107
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 108
       if: hashFiles('list')
@@ -2354,15 +2567,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part108
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 109
       if: hashFiles('list')
@@ -2375,15 +2590,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part109
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 110
       if: hashFiles('list')
@@ -2396,15 +2613,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part110
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 111
       if: hashFiles('list')
@@ -2417,15 +2636,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part111
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 112
       if: hashFiles('list')
@@ -2438,15 +2659,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part112
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 113
       if: hashFiles('list')
@@ -2459,15 +2682,17 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part113
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
     - name: Start Dumping Part 114
       if: hashFiles('list')
@@ -2480,13 +2705,15 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.part114
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
+
 
