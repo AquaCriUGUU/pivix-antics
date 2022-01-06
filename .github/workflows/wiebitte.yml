@@ -6,13 +6,11 @@ on:
 jobs:
   wiebitte:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: ${{ github.head_ref }}
+        token: ${{ secret.AquaCriUGUU }}
 
     - name: AquaCriUGUU
       run: |
