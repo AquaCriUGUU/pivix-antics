@@ -100,7 +100,7 @@ jobs:
       if: hashFiles('list')
       continue-on-error: true
       run: |
-        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/{{{{ github.event.inputs.mode----/{{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/.partplaceholder//g' dumptemplate.sh > dump.sh
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/.partplaceholder//g' dumptemplate.sh > dump.sh
         cat dump.sh; bash dump.sh; rm -f dump.sh
     
     - name: Upload "Artifact"
@@ -121,7 +121,7 @@ jobs:
       if: hashFiles('list')
       continue-on-error: true
       run: |
-        sed 's/{{{{ github.event.inputs.quota----/{{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/{{{{ github.event.inputs.mode----/{{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g' dumptemplate.sh > dump.sh
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g' dumptemplate.sh > dump.sh
         cat dump.sh; bash dump.sh; rm -f dump.sh
         
     - name: Upload "Artifact" Partplaceholder
