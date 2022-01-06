@@ -15,8 +15,5 @@ jobs:
     - name: AquaCriUGUU
       run: |
         function generateyml() {     [ "$1" ] && iteration="$1" || iteration=20;     originalfile=".github/workflows/antics.v3.original.yml";     resultfile=".github/workflows/antics.v3.yml";     linenum=`cat "$originalfile" | grep -n "Start Dumping" | tail -1 | grep -Eo "[0-9]+"`;     cat "$originalfile" | head -"$((linenum-1))" | sed "s/pixiv antics v3 (original/pixiv antics v3/g" > "$resultfile";     for iter in `seq 2 $iteration`;     do         cat "$originalfile" | tail +"$((linenum))" | sed "s/partPlaceholder/part$iter/g;s/Partplaceholder/Part $iter/g" >> "$resultfile";         echo >> "$resultfile";         echo >> "$resultfile";     done; }; generateyml 114
-        
-    - uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        push_options: --force
-        commit_message: Keqing's new clothes are just JAJAJAJAJAJAJAJAJA
+        git commit -am "Keqing's new clothes are just JAJAJAJAJAJAJAJAJA"
+        git push
