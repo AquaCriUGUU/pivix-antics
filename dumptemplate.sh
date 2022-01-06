@@ -14,7 +14,7 @@ done
 
 if [ "____github.event.inputs.listfilename----" ]
 then
-    echo "____github.event.inputs.listfilename----"
+    filename="____github.event.inputs.listfilename----"
 else
     if [ "____github.event.inputs.mode----" = "artist" ]
     then
