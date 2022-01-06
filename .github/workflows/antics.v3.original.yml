@@ -114,6 +114,7 @@ jobs:
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
 
@@ -128,12 +129,13 @@ jobs:
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.partplaceholder
+        name: wiebitte.partPlaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         ls -lh
+        echo
         stat *
         rm *.rar -f
