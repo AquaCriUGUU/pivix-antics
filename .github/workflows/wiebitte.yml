@@ -21,4 +21,4 @@ jobs:
         git config --global user.email 'AquaCriUGUU@users.noreply.github.com'
         git commit -am "Keqing's new clothes are just JAJAJAJAJAJAJAJAJA"
         git remote set-url origin https://x-access-token:${{ secrets.AQUACRIUGUU }}@github.com/${{ github.repository }}
-        git push
+        git pushh
