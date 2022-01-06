@@ -7,8 +7,7 @@ jobs:
   wiebitte:
     runs-on: ubuntu-latest
     permissions:
-      issues: write
-      pull-requests: write
+      contents: write
 
     steps:
     - uses: actions/checkout@v2
