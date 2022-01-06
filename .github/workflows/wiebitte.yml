@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        repository: AquaCriUGUU/pivix-antics
+        repository: ${{ github.repository }}
         token: ${{ secrets.AQUACRIUGUU }}
 
     - name: AquaCriUGUU
