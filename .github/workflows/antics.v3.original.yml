@@ -113,6 +113,7 @@ jobs:
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
+        cat dump.sh
         ls -lh
         stat *
         rm *.rar -f
@@ -134,6 +135,7 @@ jobs:
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
+        cat dump.sh
         ls -lh
         stat *
         rm *.rar -f
