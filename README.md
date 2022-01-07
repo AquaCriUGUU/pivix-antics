@@ -8,7 +8,8 @@ pixiv dump with github actions i guess:luminethonk:
  - visit a certain pixiv post, like this random fuckeqing pic: [https://www.pixiv.net/artworks/95228011](https://www.pixiv.net/artworks/95228011):thonkeqing:
  - smash F12, switch to the "Network" tab, and refresh
  - pick one network request, for example the very first one, and right click, copy, copy as cURL (POSIX), at least that's how it's done in firefox
- - and then delete the part like `curl 'https://www.pixiv.net/artworks/95228011'` and `-H 'Accept-Encoding: gzip, deflate, br'` and probably `--compressed`, and then there you go, copy them into the `curl parameters used by pixiv: ` part of github actions antics
+ - (obsolete) ~~and then delete the part like `curl 'https://www.pixiv.net/artworks/95228011'` and `-H 'Accept-Encoding: gzip, deflate, br'` and probably `--compressed`, and then there you go, copy them into the `curl parameters used by pixiv: ` part of github actions antics~~
+ - just copy them into the `curl parameters used by pixiv: ` part of github actions antics, and it should automatically delete the unnecessary part itself:fischlthonk:
 
 # something about antics.v2.yml
 
@@ -25,8 +26,8 @@ well, the bash antics i used was like:
 ```bash
 function generateyml() {
     [ "$1" ] && iteration="$1" || iteration=20
-    originalfile="/cygdrive/k/Documents/antics.v3.original.yml"
-    resultfile="/cygdrive/z/antics.v3.yml"
+    originalfile=".github/workflows/antics.v3.original.yml"
+    resultfile=".github/workflows/antics.v3.yml"
     linenum=`cat "$originalfile" | grep -n "Start Dumping" | tail -1 | grep -Eo "[0-9]+"`
     cat "$originalfile" | head -"$((linenum-1))" | sed "s/pixiv antics v3 (original/pixiv antics v3/g" > "$resultfile"
     for iter in `seq 2 $iteration`
@@ -39,6 +40,15 @@ function generateyml() {
 ```
 
 basically you don't need to worry about this, unless 114.514 times was not enough for your pixiv antics, then have fun making it 114514 times, IIYO! KOIYO! use pixiv defloration hentai dumps to smash into these discord and twitter "anime child pornography" theorist faggots' chests! their chests!! (:wiebitte:
+
+# wiebitte.yml
+
+of course, i made another yml to automatically generate antics.v3.yml from antics.v3.original.yml, as long as antics.v3.original.yml was pushed, it would ba automatically triggered, and antics.v3.yml would be generated within a minute
+
+but, if you want this antics to work on your fork of this repository, probably you need to do some extra steps: 
+ - go apply for a new pat (personal access token) in [https://github.com/settings/tokens](https://github.com/settings/tokens), just allow workflow perm
+ - add the secret key you got from the last step (it would only show once! ) in a new repository secret in [https://github.com/your-username/pivix-antics/settings/secrets/actions](https://github.com/your-username/pivix-antics/settings/secrets/actions), you can just name it `AquaCriUGUU` or `AQUACRIUGUU` so you don't need to change the script:luminethonk:
+ - and probably you should just enable actions first in [https://github.com/your-username/pivix-antics/settings/actions](https://github.com/your-username/pivix-antics/settings/actions)
 
 # what's new in antics.v3.yml? 
 
