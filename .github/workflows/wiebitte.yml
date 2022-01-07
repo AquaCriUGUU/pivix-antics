@@ -4,8 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/antics.v3.original.yml'
-  workflow_dispatch:
-  
+      
 jobs:
   wiebitte:
     runs-on: ubuntu-latest
