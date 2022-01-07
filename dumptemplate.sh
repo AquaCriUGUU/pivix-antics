@@ -2,6 +2,7 @@
 parameters=`cat parameters.txt`
 parameters4aria2="${parameters//--compressed/ }"
 parameters4aria2="${parameters4aria2//-H/--header}"
+
 while ( [ `du -s "wiebitte" | grep -Eo "[0-9]*\s" | grep -Eo "[0-9]*"` -lt $((____github.event.inputs.quota----*1024)) ] && [ -s "list" ] )
 do 
     echo `du -s "wiebitte" | grep -Eo "[0-9]*\s" | grep -Eo "[0-9]*"`
