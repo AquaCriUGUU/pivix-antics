@@ -1,1 +1,2590 @@
-barbruh
+# This is a basic workflow that is manually triggered
+
+name: rule34xxx
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      loglevel:
+        description: 'Log Level (silent, default, verbose): '
+        default: 'default'
+        required: true
+      tags:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Tags: '
+        # Default value if no value is explicitly provided
+        default: ''
+        # Input has to be provided for the workflow to run
+        required: true
+      listurl:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'List URL: '
+        # Default value if no value is explicitly provided
+        default: ''
+        # Input has to be provided for the workflow to run
+        required: false
+      listfilename:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Archive Filename: '
+        # Default value if no value is explicitly provided
+        default: ''
+        # Input has to be provided for the workflow to run
+        required: false
+      filesperdownload:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Files Per Download: '
+        # Default value if no value is explicitly provided
+        default: '1145'
+        # Input has to be provided for the workflow to run
+        required: true
+      quota:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Filesize Per Upload (in MB: '
+        # Default value if no value is explicitly provided
+        default: '4096'
+        # Input has to be provided for the workflow to run
+        required: true
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "pixivdump"
+  rule34xxxdump:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Checkout Codes
+      uses: actions/checkout@v2
+
+    - name: Start Analyzing
+      run: |
+        wget "https://github.com/P3TERX/Aria2-Pro-Core/releases/download/1.36.0_2021.08.22/aria2-1.36.0-static-linux-amd64.tar.gz"
+        tar -xvzf aria2-1.36.0-static-linux-amd64.tar.gz
+        chmod +x aria2c
+        wget "https://www.rarlab.com/rar/rarlinux-x64-6.0.2.tar.gz"
+        tar -xvzf rarlinux-x64-6.0.2.tar.gz
+        chmod +x rar/rar
+        echo ""> parameters.txt
+        mkdir wiebitte; cd wiebitte
+        [ "${{ github.event.inputs.mode }}" = "list" ] && aria2c "${{ github.event.inputs.listurl }}" --out "list" || bash ../rule34xxx.sh "${{ github.event.inputs.loglevel }}" "${{ github.event.inputs.tags }}"
+        mv list ../
+        cd ..
+    
+    - name: Upload List
+      uses: actions/upload-artifact@v2
+      with:
+        name: list
+        path: "list"
+      
+    - name: Start Dumping
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/.partplaceholder//g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+    
+    - name: Upload "Artifact"
+      if: hashFiles('*.rar')
+      uses: actions/upload-artifact@v2
+      with:
+        name: wiebitte
+        path: "*.rar"
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 2
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part2/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 2
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part2
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 3
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part3/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 3
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part3
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 4
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part4/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 4
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part4
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 5
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part5/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 5
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part5
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 6
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part6/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 6
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part6
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 7
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part7/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 7
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part7
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 8
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part8/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 8
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part8
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 9
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part9/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 9
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part9
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 10
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part10/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 10
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part10
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 11
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part11/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 11
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part11
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 12
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part12/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 12
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part12
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 13
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part13/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 13
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part13
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 14
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part14/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 14
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part14
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 15
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part15/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 15
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part15
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 16
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part16/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 16
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part16
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 17
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part17/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 17
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part17
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 18
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part18/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 18
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part18
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 19
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part19/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 19
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part19
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 20
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part20/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 20
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part20
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 21
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part21/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 21
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part21
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 22
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part22/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 22
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part22
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 23
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part23/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 23
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part23
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 24
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part24/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 24
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part24
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 25
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part25/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 25
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part25
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 26
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part26/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 26
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part26
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 27
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part27/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 27
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part27
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 28
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part28/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 28
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part28
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 29
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part29/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 29
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part29
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 30
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part30/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 30
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part30
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 31
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part31/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 31
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part31
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 32
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part32/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 32
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part32
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 33
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part33/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 33
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part33
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 34
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part34/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 34
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part34
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 35
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part35/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 35
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part35
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 36
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part36/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 36
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part36
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 37
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part37/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 37
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part37
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 38
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part38/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 38
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part38
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 39
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part39/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 39
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part39
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 40
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part40/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 40
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part40
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 41
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part41/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 41
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part41
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 42
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part42/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 42
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part42
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 43
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part43/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 43
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part43
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 44
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part44/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 44
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part44
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 45
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part45/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 45
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part45
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 46
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part46/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 46
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part46
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 47
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part47/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 47
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part47
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 48
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part48/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 48
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part48
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 49
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part49/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 49
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part49
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 50
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part50/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 50
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part50
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 51
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part51/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 51
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part51
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 52
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part52/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 52
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part52
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 53
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part53/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 53
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part53
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 54
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part54/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 54
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part54
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 55
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part55/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 55
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part55
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 56
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part56/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 56
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part56
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 57
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part57/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 57
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part57
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 58
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part58/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 58
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part58
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 59
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part59/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 59
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part59
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 60
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part60/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 60
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part60
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 61
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part61/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 61
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part61
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 62
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part62/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 62
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part62
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 63
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part63/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 63
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part63
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 64
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part64/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 64
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part64
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 65
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part65/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 65
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part65
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 66
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part66/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 66
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part66
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 67
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part67/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 67
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part67
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 68
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part68/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 68
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part68
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 69
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part69/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 69
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part69
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 70
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part70/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 70
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part70
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 71
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part71/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 71
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part71
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 72
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part72/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 72
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part72
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 73
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part73/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 73
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part73
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 74
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part74/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 74
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part74
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 75
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part75/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 75
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part75
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 76
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part76/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 76
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part76
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 77
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part77/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 77
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part77
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 78
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part78/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 78
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part78
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 79
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part79/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 79
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part79
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 80
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part80/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 80
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part80
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 81
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part81/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 81
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part81
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 82
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part82/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 82
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part82
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 83
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part83/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 83
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part83
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 84
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part84/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 84
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part84
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 85
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part85/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 85
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part85
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 86
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part86/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 86
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part86
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 87
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part87/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 87
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part87
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 88
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part88/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 88
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part88
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 89
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part89/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 89
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part89
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 90
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part90/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 90
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part90
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 91
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part91/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 91
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part91
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 92
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part92/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 92
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part92
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 93
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part93/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 93
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part93
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 94
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part94/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 94
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part94
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 95
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part95/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 95
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part95
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 96
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part96/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 96
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part96
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 97
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part97/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 97
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part97
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 98
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part98/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 98
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part98
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 99
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part99/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 99
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part99
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 100
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part100/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 100
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part100
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 101
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part101/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 101
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part101
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 102
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part102/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 102
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part102
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 103
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part103/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 103
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part103
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 104
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part104/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 104
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part104
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 105
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part105/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 105
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part105
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 106
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part106/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 106
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part106
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 107
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part107/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 107
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part107
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 108
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part108/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 108
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part108
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 109
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part109/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 109
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part109
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 110
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part110/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 110
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part110
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 111
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part111/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 111
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part111
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 112
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part112/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 112
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part112
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 113
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part113/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 113
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part113
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Part 114
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/part114/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Part 114
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.part114
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
