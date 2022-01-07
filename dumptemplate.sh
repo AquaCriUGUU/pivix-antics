@@ -1,5 +1,5 @@
 [ -d "wiebitte" ] || mkdir wiebitte
-parameters=`cat ../parameters.txt`
+parameters=`cat parameters.txt`
 parameters4aria2="${parameters//--compressed/ }"
 parameters4aria2="${parameters4aria2//-H/--header}"
 echo $parameters4aria2
