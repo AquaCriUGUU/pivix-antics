@@ -93,14 +93,14 @@ and the parameters of github can use the same way you get with pixiv, you can ju
 
 well, it's some radical feminists' magma opus (hakushin
 
-they would like to see men suffer, so they reported our kawaii jean chan, amber chan, mona chan and rosaria, and you know what, it's not over yet! they are planning to report raiden, shenhe, ganyu and even hutao chan! wait, why tf hutao chan? what would they report her for, her boobs are too smol? 
+they would like to see men suffer, so they reported our kawaii jean chan, amber, mona and rosaria, and you know what, it's not over yet! they are planning to report raiden, shenhe, ganyu and even hutao chan! wait, why tf hutao chan? what would they report her for, her boobs are too smol? 
 
 ![](https://cdn.discordapp.com/attachments/655564135198621707/928238070879371285/1641379572673_d166b909j00r583jo001jc000ez00jvm.jpg)
 
-i mean seriously the fucking wiebitte, these feminazis are just ugly fat bitches that no one would like to bang even if they're virgins, i guess they definitely didn't have blue eyes
+i mean seriously the fucking wiebitte fuck, these feminazis are just ugly fat bitches that no one would like to bang even if they're virgins, besides, i guess they definitely didn't have blue eyes
 
-and i suppose, the radical feminists are actually GLOBAL problem now, it's not only a problem of the western world anymore:bruhfei:
+and i suppose, the radical feminists are actually GLOBAL cancer now, it's not only a problem of the western world anymore:bruhfei:
 
 to fight this abomination and protect our blue eyes anime cuties, probably international collaboration would be required; i wish these fucking bitches would soon be doxxed by the few doxxing spezialists in the vast millions of genshin impact players, it must be at least ten of them, right? and then, let's fuck their laifu up! 
 
-you want us to suffer? I WANT YOU TO SUFFER TOO! let me guess, after they're fucking doxxed, we can easily discover that these sukas must get their graduation certs and degrees by fucking their professors with their of course no longer virgin pussies, since one of them indeed realized that the pussy on their body could be used to exchange with anything they want, money, luxuries, and of course, the graduation certs they didn't deserve. whatever the fuck they wrote in their graduation thesis, are definitely useless bullshit; they report jean chan? we report their graduation thesis! and then we watch their graduation certs and degrees REVOKED, we watch their boyfriend(s) break up with them, watch their husbands (if any) divorced, and then we watch their life BURN IN HELL! IIYO! KOIYO! smash our diccs into their pussies! their pussies!! (oouso
+you want us to suffer? I WANT YOU TO SUFFER TOO! let me guess, after they're fucking doxxed, we can easily discover that these sukas must get their graduation certs and degrees by fucking their professors with their of course no longer virgin pussies, since one of them indeed realized that the pussy on their body could be used to exchange with anything they want, money, luxuries, and of course, the graduation certs they didn't deserve. whatever the fuck they wrote in their graduation thesis, are definitely useless bullshit that was plagiarized from someone else; they report jean chan? we report their graduation thesis! and then we watch their graduation certs and degrees REVOKED, we watch their boyfriend(s) break up with them, watch their husbands (if any) divorced, and then we watch their life BURN IN HELL! IIYO! KOIYO! smash our diccs into their pussies! their pussies!! (oouso
