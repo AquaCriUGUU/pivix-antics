@@ -53,7 +53,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "dump"
-  dump:
+  pixivdump:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -127,19 +127,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part2.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 2
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part2
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 3
       if: hashFiles('list')
@@ -156,19 +157,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part3.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 3
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part3
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 4
       if: hashFiles('list')
@@ -185,19 +187,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part4.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 4
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part4
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 5
       if: hashFiles('list')
@@ -214,19 +217,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part5.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 5
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part5
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 6
       if: hashFiles('list')
@@ -243,19 +247,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part6.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 6
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part6
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 7
       if: hashFiles('list')
@@ -272,19 +277,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part7.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 7
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part7
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 8
       if: hashFiles('list')
@@ -301,19 +307,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part8.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 8
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part8
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 9
       if: hashFiles('list')
@@ -330,19 +337,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part9.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 9
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part9
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 10
       if: hashFiles('list')
@@ -359,19 +367,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part10.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 10
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part10
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 11
       if: hashFiles('list')
@@ -388,19 +397,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part11.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 11
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part11
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 12
       if: hashFiles('list')
@@ -417,19 +427,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part12.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 12
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part12
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 13
       if: hashFiles('list')
@@ -446,19 +457,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part13.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 13
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part13
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 14
       if: hashFiles('list')
@@ -475,19 +487,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part14.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 14
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part14
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 15
       if: hashFiles('list')
@@ -504,19 +517,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part15.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 15
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part15
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 16
       if: hashFiles('list')
@@ -533,19 +547,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part16.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 16
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part16
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 17
       if: hashFiles('list')
@@ -562,19 +577,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part17.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 17
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part17
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 18
       if: hashFiles('list')
@@ -591,19 +607,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part18.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 18
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part18
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 19
       if: hashFiles('list')
@@ -620,19 +637,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part19.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 19
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part19
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 20
       if: hashFiles('list')
@@ -649,19 +667,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part20.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 20
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part20
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 21
       if: hashFiles('list')
@@ -678,19 +697,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part21.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 21
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part21
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 22
       if: hashFiles('list')
@@ -707,19 +727,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part22.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 22
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part22
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 23
       if: hashFiles('list')
@@ -736,19 +757,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part23.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 23
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part23
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 24
       if: hashFiles('list')
@@ -765,19 +787,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part24.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 24
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part24
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 25
       if: hashFiles('list')
@@ -794,19 +817,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part25.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 25
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part25
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 26
       if: hashFiles('list')
@@ -823,19 +847,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part26.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 26
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part26
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 27
       if: hashFiles('list')
@@ -852,19 +877,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part27.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 27
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part27
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 28
       if: hashFiles('list')
@@ -881,19 +907,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part28.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 28
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part28
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 29
       if: hashFiles('list')
@@ -910,19 +937,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part29.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 29
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part29
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 30
       if: hashFiles('list')
@@ -939,19 +967,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part30.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 30
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part30
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 31
       if: hashFiles('list')
@@ -968,19 +997,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part31.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 31
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part31
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 32
       if: hashFiles('list')
@@ -997,19 +1027,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part32.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 32
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part32
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 33
       if: hashFiles('list')
@@ -1026,19 +1057,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part33.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 33
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part33
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 34
       if: hashFiles('list')
@@ -1055,19 +1087,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part34.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 34
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part34
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 35
       if: hashFiles('list')
@@ -1084,19 +1117,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part35.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 35
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part35
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 36
       if: hashFiles('list')
@@ -1113,19 +1147,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part36.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 36
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part36
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 37
       if: hashFiles('list')
@@ -1142,19 +1177,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part37.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 37
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part37
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 38
       if: hashFiles('list')
@@ -1171,19 +1207,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part38.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 38
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part38
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 39
       if: hashFiles('list')
@@ -1200,19 +1237,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part39.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 39
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part39
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 40
       if: hashFiles('list')
@@ -1229,19 +1267,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part40.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 40
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part40
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 41
       if: hashFiles('list')
@@ -1258,19 +1297,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part41.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 41
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part41
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 42
       if: hashFiles('list')
@@ -1287,19 +1327,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part42.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 42
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part42
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 43
       if: hashFiles('list')
@@ -1316,19 +1357,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part43.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 43
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part43
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 44
       if: hashFiles('list')
@@ -1345,19 +1387,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part44.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 44
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part44
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 45
       if: hashFiles('list')
@@ -1374,19 +1417,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part45.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 45
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part45
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 46
       if: hashFiles('list')
@@ -1403,19 +1447,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part46.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 46
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part46
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 47
       if: hashFiles('list')
@@ -1432,19 +1477,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part47.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 47
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part47
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 48
       if: hashFiles('list')
@@ -1461,19 +1507,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part48.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 48
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part48
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 49
       if: hashFiles('list')
@@ -1490,19 +1537,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part49.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 49
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part49
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 50
       if: hashFiles('list')
@@ -1519,19 +1567,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part50.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 50
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part50
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 51
       if: hashFiles('list')
@@ -1548,19 +1597,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part51.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 51
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part51
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 52
       if: hashFiles('list')
@@ -1577,19 +1627,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part52.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 52
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part52
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 53
       if: hashFiles('list')
@@ -1606,19 +1657,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part53.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 53
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part53
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 54
       if: hashFiles('list')
@@ -1635,19 +1687,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part54.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 54
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part54
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 55
       if: hashFiles('list')
@@ -1664,19 +1717,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part55.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 55
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part55
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 56
       if: hashFiles('list')
@@ -1693,19 +1747,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part56.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 56
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part56
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 57
       if: hashFiles('list')
@@ -1722,19 +1777,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part57.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 57
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part57
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 58
       if: hashFiles('list')
@@ -1751,19 +1807,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part58.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 58
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part58
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 59
       if: hashFiles('list')
@@ -1780,19 +1837,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part59.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 59
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part59
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 60
       if: hashFiles('list')
@@ -1809,19 +1867,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part60.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 60
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part60
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 61
       if: hashFiles('list')
@@ -1838,19 +1897,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part61.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 61
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part61
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 62
       if: hashFiles('list')
@@ -1867,19 +1927,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part62.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 62
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part62
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 63
       if: hashFiles('list')
@@ -1896,19 +1957,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part63.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 63
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part63
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 64
       if: hashFiles('list')
@@ -1925,19 +1987,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part64.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 64
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part64
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 65
       if: hashFiles('list')
@@ -1954,19 +2017,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part65.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 65
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part65
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 66
       if: hashFiles('list')
@@ -1983,19 +2047,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part66.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 66
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part66
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 67
       if: hashFiles('list')
@@ -2012,19 +2077,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part67.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 67
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part67
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 68
       if: hashFiles('list')
@@ -2041,19 +2107,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part68.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 68
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part68
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 69
       if: hashFiles('list')
@@ -2070,19 +2137,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part69.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 69
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part69
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 70
       if: hashFiles('list')
@@ -2099,19 +2167,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part70.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 70
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part70
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 71
       if: hashFiles('list')
@@ -2128,19 +2197,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part71.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 71
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part71
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 72
       if: hashFiles('list')
@@ -2157,19 +2227,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part72.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 72
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part72
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 73
       if: hashFiles('list')
@@ -2186,19 +2257,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part73.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 73
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part73
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 74
       if: hashFiles('list')
@@ -2215,19 +2287,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part74.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 74
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part74
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 75
       if: hashFiles('list')
@@ -2244,19 +2317,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part75.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 75
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part75
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 76
       if: hashFiles('list')
@@ -2273,19 +2347,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part76.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 76
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part76
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 77
       if: hashFiles('list')
@@ -2302,19 +2377,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part77.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 77
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part77
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 78
       if: hashFiles('list')
@@ -2331,19 +2407,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part78.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 78
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part78
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 79
       if: hashFiles('list')
@@ -2360,19 +2437,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part79.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 79
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part79
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 80
       if: hashFiles('list')
@@ -2389,19 +2467,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part80.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 80
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part80
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 81
       if: hashFiles('list')
@@ -2418,19 +2497,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part81.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 81
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part81
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 82
       if: hashFiles('list')
@@ -2447,19 +2527,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part82.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 82
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part82
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 83
       if: hashFiles('list')
@@ -2476,19 +2557,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part83.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 83
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part83
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 84
       if: hashFiles('list')
@@ -2505,19 +2587,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part84.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 84
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part84
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 85
       if: hashFiles('list')
@@ -2534,19 +2617,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part85.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 85
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part85
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 86
       if: hashFiles('list')
@@ -2563,19 +2647,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part86.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 86
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part86
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 87
       if: hashFiles('list')
@@ -2592,19 +2677,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part87.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 87
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part87
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 88
       if: hashFiles('list')
@@ -2621,19 +2707,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part88.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 88
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part88
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 89
       if: hashFiles('list')
@@ -2650,19 +2737,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part89.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 89
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part89
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 90
       if: hashFiles('list')
@@ -2679,19 +2767,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part90.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 90
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part90
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 91
       if: hashFiles('list')
@@ -2708,19 +2797,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part91.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 91
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part91
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 92
       if: hashFiles('list')
@@ -2737,19 +2827,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part92.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 92
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part92
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 93
       if: hashFiles('list')
@@ -2766,19 +2857,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part93.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 93
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part93
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 94
       if: hashFiles('list')
@@ -2795,19 +2887,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part94.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 94
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part94
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 95
       if: hashFiles('list')
@@ -2824,19 +2917,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part95.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 95
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part95
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 96
       if: hashFiles('list')
@@ -2853,19 +2947,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part96.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 96
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part96
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 97
       if: hashFiles('list')
@@ -2882,19 +2977,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part97.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 97
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part97
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 98
       if: hashFiles('list')
@@ -2911,19 +3007,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part98.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 98
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part98
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 99
       if: hashFiles('list')
@@ -2940,19 +3037,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part99.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 99
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part99
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 100
       if: hashFiles('list')
@@ -2969,19 +3067,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part100.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 100
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part100
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 101
       if: hashFiles('list')
@@ -2998,19 +3097,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part101.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 101
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part101
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 102
       if: hashFiles('list')
@@ -3027,19 +3127,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part102.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 102
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part102
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 103
       if: hashFiles('list')
@@ -3056,19 +3157,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part103.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 103
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part103
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 104
       if: hashFiles('list')
@@ -3085,19 +3187,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part104.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 104
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part104
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 105
       if: hashFiles('list')
@@ -3114,19 +3217,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part105.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 105
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part105
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 106
       if: hashFiles('list')
@@ -3143,19 +3247,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part106.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 106
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part106
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 107
       if: hashFiles('list')
@@ -3172,19 +3277,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part107.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 107
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part107
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 108
       if: hashFiles('list')
@@ -3201,19 +3307,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part108.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 108
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part108
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 109
       if: hashFiles('list')
@@ -3230,19 +3337,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part109.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 109
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part109
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 110
       if: hashFiles('list')
@@ -3259,19 +3367,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part110.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 110
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part110
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 111
       if: hashFiles('list')
@@ -3288,19 +3397,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part111.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 111
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part111
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 112
       if: hashFiles('list')
@@ -3317,19 +3427,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part112.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 112
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part112
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 113
       if: hashFiles('list')
@@ -3346,19 +3457,20 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part113.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 113
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part113
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
     - name: Start Dumping Part 114
       if: hashFiles('list')
@@ -3375,17 +3487,18 @@ jobs:
         time=`date +%y.%m.%d`
         filename=`if [ "${{ github.event.inputs.mode }}" = "artist" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}"; elif [ "${{ github.event.inputs.mode }}" = "tags" ]; then     echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "combined" ]; then echo "${{ github.event.inputs.mode }}.${{ github.event.inputs.artist }}.${{ github.event.inputs.tags }}"; elif [ "${{ github.event.inputs.mode }}" = "list" ]; then echo "${{ github.event.inputs.mode }}.$time"; else echo "barbruh"; fi`
         mv "wiebitte" "$filename"
-        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.part114.rar" "$filename"
+        rar/rar a -df -ep1 -htb -m0 -ma5 -rr5 -ts -tsp -ol "$filename.partplaceholder.rar" "$filename"
     
     - name: Upload "Artifact" Part 114
       uses: actions/upload-artifact@v2
       if: hashFiles('*.rar')
       with:
-        name: wiebitte.part114
+        name: wiebitte.partplaceholder
         path: "*.rar"
         
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
         rm *.rar -f
+
 
