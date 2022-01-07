@@ -20,6 +20,7 @@ jobs:
     - name: AquaCriUGUU
       run: |
         function generateyml() {     [ "$1" ] && iteration="$1" || iteration=20;     originalfile=".github/workflows/$2.original.yml";     resultfile=".github/workflows/$2.yml";     linenum=`cat "$originalfile" | grep -n "Start Dumping" | tail -1 | grep -Eo "[0-9]+"`;     cat "$originalfile" | head -"$((linenum-1))" | sed "s/ (original//g" > "$resultfile";     for iter in `seq 2 $iteration`;     do         cat "$originalfile" | tail +"$((linenum))" | sed "s/partPlaceholder/part$iter/g;s/Partplaceholder/Part $iter/g" >> "$resultfile";         echo >> "$resultfile";     done; }; generateyml 114 "antics.v3"; generateyml 114 "antics.v2"; generateyml 114 "rule34xxx";
+        cat '.github/workflows/rule34xxx.yml'
         git config --global user.name '${{ github.actor }}'
         git config --global user.email '${{ github.actor }}@users.noreply.github.com'
         git commit -am "Keqing's new clothes are just JAJAJAJAJAJAJAJAJA"
