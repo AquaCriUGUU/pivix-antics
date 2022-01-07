@@ -2,7 +2,7 @@ function rule34xxx() {
     cutie="$1"
     url="https://rule34.xxx/index.php?page=post&s=list&tags=$cutie"
     url=${url// /%20}
-    finalfish=`curl "$url" | grep -Eo "pid=[0-9]*\" alt=\"last page\"" | sed 's/pid=//g' | sed 's/" alt="last page"//g'`
+    finalfish=`curl "$url" 2>/dev/null | grep -Eo "pid=[0-9]*\" alt=\"last page\"" | sed 's/pid=//g' | sed 's/" alt="last page"//g'`
     echo 
     if [ ! $finalfish ]
     then
@@ -19,9 +19,9 @@ function rule34xxx() {
         url="https://rule34.xxx/index.php?page=post&s=list&tags=$cutie&pid=$fish"
         url=${url// /%20}
         
-        for hentailink in `curl "$url" | sed 's/>/\n/g' |  grep -Eo "view&id=[0-9]*" | grep -Eo "[0-9]*"` # find id's
+        for hentailink in `curl "$url" 2>/dev/null | sed 's/>/\n/g' |  grep -Eo "view&id=[0-9]*" | grep -Eo "[0-9]*"` # find id's
         do
-            hentai=`curl "https://rule34.xxx/index.php?page=post&s=view&id=$hentailink" | grep '<meta property="og:image"' | sed 's/"/\n/g' | grep "http"`
+            hentai=`curl "https://rule34.xxx/index.php?page=post&s=view&id=$hentailink" 2>/dev/null | grep '<meta property="og:image"' | sed 's/"/\n/g' | grep "http"`
             [ "$loglevel" = "verbose" ] && echo -e "    \e[32m$hentai\e[36m added into aria2 list\e[0m"
             echo "$hentai" >> list
         done
