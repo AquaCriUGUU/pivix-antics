@@ -83,7 +83,7 @@ jobs:
         wget "https://www.rarlab.com/rar/rarlinux-x64-6.0.2.tar.gz"
         tar -xvzf rarlinux-x64-6.0.2.tar.gz
         chmod +x rar/rar
-        echo "${{ github.event.inputs.parameters }}" | sed "s/-H 'Accept-Encoding: gzip, deflate, br' //g;s/--compressed//g;s/curl '[^']*' //g"> parameters.txt
+        echo "${{ github.event.inputs.parameters }} -H 'Referer: https://www.pixiv.net/artworks/1145141919810'" | sed "s/-H 'Accept-Encoding: gzip, deflate, br' //g;s/--compressed//g;s/curl '[^']*' //g"> parameters.txt
         sed -i "s/..\/aria2c/# ..\/aria2c/g;s/rm list -f/# rm list -f/g" pixiv.sh
         mkdir wiebitte; cd wiebitte
         [ "${{ github.event.inputs.mode }}" = "list" ] && aria2c "${{ github.event.inputs.listurl }}" --out "list" || bash ../pixiv.sh "${{ github.event.inputs.loglevel }}" "${{ github.event.inputs.mode }}" "${{ github.event.inputs.artist }}" "${{ github.event.inputs.tags }}"
