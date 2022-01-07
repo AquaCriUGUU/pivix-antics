@@ -85,3 +85,5 @@ function dumpgithubartifacts() {
 ```
 
 and the parameters of github can use the same way you get with pixiv, you can just create a github alt and any github account can download them:luminethonk:
+
+> and a frinedly reminder that these files coud only be downloaded in single thread and the speed is slow af (less than 100Mbps), so pls don't use vultr's hourly billed vps to transfer them elsewhere:AquaCriUGUU:
