@@ -72,6 +72,7 @@ wait, you gotta use more antics to download these shit in cli; like:
 
 ```bash
 function dumpgithubartifacts() {
+    parameters=`echo "$parameters"| sed "s/-H 'Accept-Encoding: gzip, deflate, br' //g;s/--compressed//g;s/curl '[^']*' //g"` # added some preprocessing
     for links in `eval "curl '$1' $parameters" | grep -Eo "/.*artifacts/[0-9]+" | sort | uniq`
     do
         for file in `eval "curl -I 'https://github.com$links' $parameters" | grep "[L|l]ocation:" | sed 's/[L/l]ocation: //g;s/[L/l]ocation://g'`
