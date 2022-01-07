@@ -14,7 +14,7 @@ on:
         required: true
       loglevel:
         description: 'Log Level (silent, default, verbose): '
-        default: 'default'
+        default: 'verbose'
         required: true
       tags:
         # Friendly description to be shown in the UI instead of 'name'
