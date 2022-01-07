@@ -1,0 +1,124 @@
+# This is a basic workflow that is manually triggered
+
+name: rule34xxx (original
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+        description: 'Log Level (silent, default, verbose): '
+        default: 'default'
+        required: true
+      tags:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Tags: '
+        # Default value if no value is explicitly provided
+        default: ''
+        # Input has to be provided for the workflow to run
+        required: true
+      listurl:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'List URL: '
+        # Default value if no value is explicitly provided
+        default: ''
+        # Input has to be provided for the workflow to run
+        required: false
+      listfilename:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Archive Filename: '
+        # Default value if no value is explicitly provided
+        default: ''
+        # Input has to be provided for the workflow to run
+        required: false
+      filesperdownload:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Files Per Download: '
+        # Default value if no value is explicitly provided
+        default: '1145'
+        # Input has to be provided for the workflow to run
+        required: true
+      quota:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Filesize Per Upload (in MB: '
+        # Default value if no value is explicitly provided
+        default: '4096'
+        # Input has to be provided for the workflow to run
+        required: true
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "pixivdump"
+  pixivdump:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Checkout Codes
+      uses: actions/checkout@v2
+
+    - name: Start Analyzing
+      run: |
+        wget "https://github.com/P3TERX/Aria2-Pro-Core/releases/download/1.36.0_2021.08.22/aria2-1.36.0-static-linux-amd64.tar.gz"
+        tar -xvzf aria2-1.36.0-static-linux-amd64.tar.gz
+        chmod +x aria2c
+        wget "https://www.rarlab.com/rar/rarlinux-x64-6.0.2.tar.gz"
+        tar -xvzf rarlinux-x64-6.0.2.tar.gz
+        chmod +x rar/rar
+        echo ""> parameters.txt
+        mkdir wiebitte; cd wiebitte
+        [ "${{ github.event.inputs.mode }}" = "list" ] && aria2c "${{ github.event.inputs.listurl }}" --out "list" || bash ../rule34xxx.sh "${{ github.event.inputs.loglevel }}" "${{ github.event.inputs.tags }}"
+        mv list ../
+        cd ..
+    
+    - name: Upload List
+      uses: actions/upload-artifact@v2
+      with:
+        name: list
+        path: "list"
+      
+    - name: Start Dumping
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/.partplaceholder//g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+    
+    - name: Upload "Artifact"
+      if: hashFiles('*.rar')
+      uses: actions/upload-artifact@v2
+      with:
+        name: wiebitte
+        path: "*.rar"
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
+
+    - name: Start Dumping Partplaceholder
+      if: hashFiles('list')
+      continue-on-error: true
+      run: |
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/partPlaceholder/g' dumptemplate.sh > dump.sh
+        bash dump.sh; rm -f dump.sh
+        
+    - name: Upload "Artifact" Partplaceholder
+      uses: actions/upload-artifact@v2
+      if: hashFiles('*.rar')
+      with:
+        name: wiebitte.partPlaceholder
+        path: "*.rar"
+        
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
+        ls -lh
+        echo
+        stat *
+        rm *.rar -f
