@@ -11,9 +11,9 @@ pixiv dump with github actions i guess:luminethonk:
  - (obsolete) ~~and then delete the part like `curl 'https://www.pixiv.net/artworks/95228011'` and `-H 'Accept-Encoding: gzip, deflate, br'` and probably `--compressed`, and then there you go, copy them into the `curl parameters used by pixiv: ` part of github actions antics~~
  - just copy them into the `curl parameters used by pixiv: ` part of github actions antics, and it should automatically delete the unnecessary part itself:fischlthonk:
 
-# something about antics.v2.yml
+# something about antics.v2.yml and probably antics.v3.yml too
 
-this antics was intended to upload certain number of pics each time, too bad github didn't provide loop functions in yml to let me upload artifact every time i downloaded enough pics until there's no files to download:barbruh:
+this antics was intended to upload artifact every time i downloaded enough pics until there's no files to download, since certain pixiv tags would totally use up its little space to upload them in one go, too bad github didn't provide loop functions in yml:barbruh:
 
 but at least it could stop certain steps if certain file doesn't exist on working directory, so i came up with another bash antics: 
 
