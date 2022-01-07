@@ -28,4 +28,5 @@ function rule34xxx() {
     done
 }
 
-rule34xxx "$1"
+loglevel="$1"
+rule34xxx "$2"
