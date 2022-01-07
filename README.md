@@ -97,7 +97,7 @@ they would like to see men suffer, so they reported our kawaii jean chan, amber,
 
 ![](https://cdn.discordapp.com/attachments/655564135198621707/928238070879371285/1641379572673_d166b909j00r583jo001jc000ez00jvm.jpg)
 
-i mean seriously the fucking wiebitte fuck, these feminazis are just ugly fat bitches that no one would like to bang even if they're virgins, besides, i guess they definitely didn't have blue eyes
+i mean seriously the fucking wiebitte fuck, these feminazis are just ugly fat bitches that no one would like to bang even if they're virgins, besides, i guess they definitely didn't have blue eyes, so probably they're just ueber jealous of how jean chan has blue eyes, beeg boobs and she's well loved:luminethonk:
 
 and i suppose, the radical feminists are actually GLOBAL cancer now, it's not only a problem of the western world anymore:bruhfei:
 
@@ -109,4 +109,4 @@ you want us to suffer? I WANT YOU TO SUFFER TOO! let me guess, after they're fuc
 
 rule34.xxx basically has the biggest pirate highres pics of these patreon artists in western hentaidom, so it's almost as important as pixiv to write a dump script for it:thonkeqing:
 
-luckily, rule34.xxx is not that hard to write though
+luckily, rule34.xxx is not that hard to write though, less than one hour used to port pixiv code to rule34.xxx (convinced
