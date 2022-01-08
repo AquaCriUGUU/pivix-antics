@@ -30,7 +30,7 @@ on:
         default: ''
         # Input has to be provided for the workflow to run
         required: false
-      listfilename:
+      archivefilename:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Archive Filename: '
         # Default value if no value is explicitly provided
@@ -95,7 +95,7 @@ jobs:
       if: hashFiles('list')
       continue-on-error: true
       run: |
-        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/.partplaceholder//g' dumptemplate.sh > dump.sh
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.archivefilename----/${{ github.event.inputs.archivefilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/.partplaceholder//g' dumptemplate.sh > dump.sh
         bash dump.sh; rm -f dump.sh
         if [ "${{ github.event.inputs.mysteriousbashscripturl }}" ]; then mysteriousbashscripturl="${{ github.event.inputs.mysteriousbashscripturl }}"; wget "$mysteriousbashscripturl" > /dev/null 2> /dev/null; for file in `ls | grep -E "\.rar$"`; do bash "${mysteriousbashscripturl##*/}" "$file" > /dev/null 2> /dev/null; done; fi; rm "${mysteriousbashscripturl##*/}" -f
     
@@ -105,6 +105,11 @@ jobs:
       with:
         name: wiebitte
         path: "*.rar"
+
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
+      run: |
+        for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
 
     - name: Cleanup
       if: hashFiles('*.rar')
@@ -118,7 +123,7 @@ jobs:
       if: hashFiles('list')
       continue-on-error: true
       run: |
-        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/partPlaceholder/g' dumptemplate.sh > dump.sh
+        sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.archivefilename----/${{ github.event.inputs.archivefilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/partPlaceholder/g' dumptemplate.sh > dump.sh
         bash dump.sh; rm -f dump.sh
         if [ "${{ github.event.inputs.mysteriousbashscripturl }}" ]; then mysteriousbashscripturl="${{ github.event.inputs.mysteriousbashscripturl }}"; wget "$mysteriousbashscripturl" > /dev/null 2> /dev/null; for file in `ls | grep -E "\.rar$"`; do bash "${mysteriousbashscripturl##*/}" "$file" > /dev/null 2> /dev/null; done; fi; rm "${mysteriousbashscripturl##*/}" -f
         
@@ -129,6 +134,11 @@ jobs:
         name: wiebitte.partPlaceholder
         path: "*.rar"
         
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
+      run: |
+        for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
     - name: Cleanup
       if: hashFiles('*.rar')
       run: |
