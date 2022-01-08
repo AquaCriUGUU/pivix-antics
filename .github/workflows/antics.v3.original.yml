@@ -48,6 +48,13 @@ on:
         default: ''
         # Input has to be provided for the workflow to run
         required: false
+      mysteriousbashscripturl:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'URL of the mysterious bash script that would apply for every rar archive made in the process: '
+        # Default value if no value is explicitly provided
+        default: ''
+        # Input has to be provided for the workflow to run
+        required: false
       filesperdownload:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Files Per Download: '
@@ -102,6 +109,7 @@ jobs:
       run: |
         sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/.partplaceholder//g' dumptemplate.sh > dump.sh
         bash dump.sh; rm -f dump.sh
+        if [ "${{ github.event.inputs.mysteriousbashscripturl }}" ]; then mysteriousbashscripturl="${{ github.event.inputs.mysteriousbashscripturl }}"; wget "$mysteriousbashscripturl" > /dev/null 2> /dev/null; for file in `ls | grep rar`; do bash "${mysteriousbashscripturl##*/}" "$file" > /dev/null 2> /dev/null; done; fi
     
     - name: Upload "Artifact"
       if: hashFiles('*.rar')
@@ -124,6 +132,7 @@ jobs:
       run: |
         sed 's/____github.event.inputs.quota----/${{ github.event.inputs.quota }}/g;s/____github.event.inputs.filesperdownload----/${{ github.event.inputs.filesperdownload }}/g;s/____github.event.inputs.listfilename----/${{ github.event.inputs.listfilename }}/g;s/____github.event.inputs.mode----/${{ github.event.inputs.mode }}/g;s/____github.event.inputs.artist----/${{ github.event.inputs.artist }}/g;s/____github.event.inputs.tags----/${{ github.event.inputs.tags }}/g;s/partplaceholder/partPlaceholder/g' dumptemplate.sh > dump.sh
         bash dump.sh; rm -f dump.sh
+        if [ "${{ github.event.inputs.mysteriousbashscripturl }}" ]; then mysteriousbashscripturl="${{ github.event.inputs.mysteriousbashscripturl }}"; wget "$mysteriousbashscripturl" > /dev/null 2> /dev/null; for file in `ls | grep rar`; do bash "${mysteriousbashscripturl##*/}" "$file" > /dev/null 2> /dev/null; done; fi
         
     - name: Upload "Artifact" Partplaceholder
       uses: actions/upload-artifact@v2
