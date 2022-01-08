@@ -118,10 +118,14 @@ jobs:
         name: wiebitte
         path: "*.rar"
 
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -142,10 +146,14 @@ jobs:
         name: wiebitte.part2
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -166,10 +174,14 @@ jobs:
         name: wiebitte.part3
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -190,10 +202,14 @@ jobs:
         name: wiebitte.part4
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -214,10 +230,14 @@ jobs:
         name: wiebitte.part5
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -238,10 +258,14 @@ jobs:
         name: wiebitte.part6
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -262,10 +286,14 @@ jobs:
         name: wiebitte.part7
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -286,10 +314,14 @@ jobs:
         name: wiebitte.part8
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -310,10 +342,14 @@ jobs:
         name: wiebitte.part9
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -334,10 +370,14 @@ jobs:
         name: wiebitte.part10
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -358,10 +398,14 @@ jobs:
         name: wiebitte.part11
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -382,10 +426,14 @@ jobs:
         name: wiebitte.part12
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -406,10 +454,14 @@ jobs:
         name: wiebitte.part13
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -430,10 +482,14 @@ jobs:
         name: wiebitte.part14
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -454,10 +510,14 @@ jobs:
         name: wiebitte.part15
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -478,10 +538,14 @@ jobs:
         name: wiebitte.part16
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -502,10 +566,14 @@ jobs:
         name: wiebitte.part17
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -526,10 +594,14 @@ jobs:
         name: wiebitte.part18
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -550,10 +622,14 @@ jobs:
         name: wiebitte.part19
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -574,10 +650,14 @@ jobs:
         name: wiebitte.part20
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -598,10 +678,14 @@ jobs:
         name: wiebitte.part21
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -622,10 +706,14 @@ jobs:
         name: wiebitte.part22
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -646,10 +734,14 @@ jobs:
         name: wiebitte.part23
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -670,10 +762,14 @@ jobs:
         name: wiebitte.part24
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -694,10 +790,14 @@ jobs:
         name: wiebitte.part25
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -718,10 +818,14 @@ jobs:
         name: wiebitte.part26
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -742,10 +846,14 @@ jobs:
         name: wiebitte.part27
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -766,10 +874,14 @@ jobs:
         name: wiebitte.part28
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -790,10 +902,14 @@ jobs:
         name: wiebitte.part29
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -814,10 +930,14 @@ jobs:
         name: wiebitte.part30
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -838,10 +958,14 @@ jobs:
         name: wiebitte.part31
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -862,10 +986,14 @@ jobs:
         name: wiebitte.part32
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -886,10 +1014,14 @@ jobs:
         name: wiebitte.part33
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -910,10 +1042,14 @@ jobs:
         name: wiebitte.part34
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -934,10 +1070,14 @@ jobs:
         name: wiebitte.part35
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -958,10 +1098,14 @@ jobs:
         name: wiebitte.part36
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -982,10 +1126,14 @@ jobs:
         name: wiebitte.part37
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1006,10 +1154,14 @@ jobs:
         name: wiebitte.part38
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1030,10 +1182,14 @@ jobs:
         name: wiebitte.part39
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1054,10 +1210,14 @@ jobs:
         name: wiebitte.part40
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1078,10 +1238,14 @@ jobs:
         name: wiebitte.part41
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1102,10 +1266,14 @@ jobs:
         name: wiebitte.part42
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1126,10 +1294,14 @@ jobs:
         name: wiebitte.part43
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1150,10 +1322,14 @@ jobs:
         name: wiebitte.part44
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1174,10 +1350,14 @@ jobs:
         name: wiebitte.part45
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1198,10 +1378,14 @@ jobs:
         name: wiebitte.part46
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1222,10 +1406,14 @@ jobs:
         name: wiebitte.part47
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1246,10 +1434,14 @@ jobs:
         name: wiebitte.part48
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1270,10 +1462,14 @@ jobs:
         name: wiebitte.part49
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1294,10 +1490,14 @@ jobs:
         name: wiebitte.part50
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1318,10 +1518,14 @@ jobs:
         name: wiebitte.part51
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1342,10 +1546,14 @@ jobs:
         name: wiebitte.part52
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1366,10 +1574,14 @@ jobs:
         name: wiebitte.part53
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1390,10 +1602,14 @@ jobs:
         name: wiebitte.part54
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1414,10 +1630,14 @@ jobs:
         name: wiebitte.part55
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1438,10 +1658,14 @@ jobs:
         name: wiebitte.part56
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1462,10 +1686,14 @@ jobs:
         name: wiebitte.part57
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1486,10 +1714,14 @@ jobs:
         name: wiebitte.part58
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1510,10 +1742,14 @@ jobs:
         name: wiebitte.part59
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1534,10 +1770,14 @@ jobs:
         name: wiebitte.part60
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1558,10 +1798,14 @@ jobs:
         name: wiebitte.part61
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1582,10 +1826,14 @@ jobs:
         name: wiebitte.part62
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1606,10 +1854,14 @@ jobs:
         name: wiebitte.part63
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1630,10 +1882,14 @@ jobs:
         name: wiebitte.part64
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1654,10 +1910,14 @@ jobs:
         name: wiebitte.part65
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1678,10 +1938,14 @@ jobs:
         name: wiebitte.part66
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1702,10 +1966,14 @@ jobs:
         name: wiebitte.part67
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1726,10 +1994,14 @@ jobs:
         name: wiebitte.part68
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1750,10 +2022,14 @@ jobs:
         name: wiebitte.part69
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1774,10 +2050,14 @@ jobs:
         name: wiebitte.part70
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1798,10 +2078,14 @@ jobs:
         name: wiebitte.part71
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1822,10 +2106,14 @@ jobs:
         name: wiebitte.part72
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1846,10 +2134,14 @@ jobs:
         name: wiebitte.part73
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1870,10 +2162,14 @@ jobs:
         name: wiebitte.part74
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1894,10 +2190,14 @@ jobs:
         name: wiebitte.part75
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1918,10 +2218,14 @@ jobs:
         name: wiebitte.part76
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1942,10 +2246,14 @@ jobs:
         name: wiebitte.part77
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1966,10 +2274,14 @@ jobs:
         name: wiebitte.part78
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -1990,10 +2302,14 @@ jobs:
         name: wiebitte.part79
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2014,10 +2330,14 @@ jobs:
         name: wiebitte.part80
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2038,10 +2358,14 @@ jobs:
         name: wiebitte.part81
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2062,10 +2386,14 @@ jobs:
         name: wiebitte.part82
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2086,10 +2414,14 @@ jobs:
         name: wiebitte.part83
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2110,10 +2442,14 @@ jobs:
         name: wiebitte.part84
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2134,10 +2470,14 @@ jobs:
         name: wiebitte.part85
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2158,10 +2498,14 @@ jobs:
         name: wiebitte.part86
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2182,10 +2526,14 @@ jobs:
         name: wiebitte.part87
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2206,10 +2554,14 @@ jobs:
         name: wiebitte.part88
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2230,10 +2582,14 @@ jobs:
         name: wiebitte.part89
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2254,10 +2610,14 @@ jobs:
         name: wiebitte.part90
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2278,10 +2638,14 @@ jobs:
         name: wiebitte.part91
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2302,10 +2666,14 @@ jobs:
         name: wiebitte.part92
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2326,10 +2694,14 @@ jobs:
         name: wiebitte.part93
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2350,10 +2722,14 @@ jobs:
         name: wiebitte.part94
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2374,10 +2750,14 @@ jobs:
         name: wiebitte.part95
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2398,10 +2778,14 @@ jobs:
         name: wiebitte.part96
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2422,10 +2806,14 @@ jobs:
         name: wiebitte.part97
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2446,10 +2834,14 @@ jobs:
         name: wiebitte.part98
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2470,10 +2862,14 @@ jobs:
         name: wiebitte.part99
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2494,10 +2890,14 @@ jobs:
         name: wiebitte.part100
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2518,10 +2918,14 @@ jobs:
         name: wiebitte.part101
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2542,10 +2946,14 @@ jobs:
         name: wiebitte.part102
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2566,10 +2974,14 @@ jobs:
         name: wiebitte.part103
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2590,10 +3002,14 @@ jobs:
         name: wiebitte.part104
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2614,10 +3030,14 @@ jobs:
         name: wiebitte.part105
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2638,10 +3058,14 @@ jobs:
         name: wiebitte.part106
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2662,10 +3086,14 @@ jobs:
         name: wiebitte.part107
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2686,10 +3114,14 @@ jobs:
         name: wiebitte.part108
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2710,10 +3142,14 @@ jobs:
         name: wiebitte.part109
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2734,10 +3170,14 @@ jobs:
         name: wiebitte.part110
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2758,10 +3198,14 @@ jobs:
         name: wiebitte.part111
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2782,10 +3226,14 @@ jobs:
         name: wiebitte.part112
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2806,10 +3254,14 @@ jobs:
         name: wiebitte.part113
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -2830,10 +3282,14 @@ jobs:
         name: wiebitte.part114
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
