@@ -1,5 +1,5 @@
 [ -d "wiebitte" ] || mkdir wiebitte
-parameters=`cat parameters.txt`
+parameters=`cat ../parameters.txt`
 parameters4aria2="${parameters//--compressed/ }"
 parameters4aria2="${parameters4aria2//-H/--header}"
 while ( [ `du -s "wiebitte" | grep -Eo "[0-9]*\s" | grep -Eo "[0-9]*"` -lt $((____github.event.inputs.quota----*1024)) ] && [ -s "list" ] )
@@ -10,14 +10,14 @@ do
     rm -f list
     [ -s "list2" ] && mv list2 list
     cd wiebitte
-    eval "../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false $parameters4aria2 -i list"
+    eval "../aria2c -k 1M -x 128 -s 128 -j 64 -R -c --auto-file-renaming=false $parameters4aria2 --header 'Referer: https://www.pixiv.net/artworks/1145141919810' -i list"
     rm list -f
     cd ..
 done
 
-if [ "____github.event.inputs.listfilename----" ]
+if [ "____github.event.inputs.archivefilename----" ]
 then
-    filename="____github.event.inputs.listfilename----"
+    filename="____github.event.inputs.archivefilename----"
 else
     if [ "____github.event.inputs.mode----" = "artist" ]
     then
