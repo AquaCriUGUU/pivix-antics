@@ -118,10 +118,14 @@ jobs:
         name: wiebitte
         path: "*.rar"
 
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
@@ -142,10 +146,14 @@ jobs:
         name: wiebitte.partPlaceholder
         path: "*.rar"
         
-    - name: Cleanup
-      if: ${{ hashFiles('*.rar') || hashFiles('*.114514') }}
+    - name: Pre-Cleanup
+      if: hashFiles('*.114514')
       run: |
         for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
+
+    - name: Cleanup
+      if: hashFiles('*.rar')
+      run: |
         ls -lh
         echo
         stat *
