@@ -54,6 +54,7 @@ jobs:
       if: hashFiles('list')
       continue-on-error: true
       run: |
+        cat rosefile.sh
         bash rosefile.sh
 
     - name: Pre-Cleanup
