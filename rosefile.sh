@@ -22,7 +22,7 @@ function rosefile_v3_for_github_actions() {
         targetfilepath=`eval "./aria2c -k 1M -x 64 -s 64 -j 64 -R -c --auto-file-renaming=false $parameter2aria2 --out '${filename%.*}$pw.${filename##*.}' '$fileurl' " | tee /dev/stderr | grep "|OK" | cut -d\| -f4`
         if [ "$targetfilepath" ]
         then
-            bash "____github.event.inputs.mysteriousbashscripturl----" "$targetfilepath" > /dev/null 2> /dev/null
+            bash "____github.event.inputs.mysteriousbashscripturl----" "$targetfilepath"
             rm -f "$targetfilepath.114514"
         fi
     fi
