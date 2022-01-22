@@ -57,7 +57,7 @@ jobs:
       run: |
         OLD_IFS=$IFS
         IFS=$'\n'
-        while [ -s "list" ]; do head -1 list >> finished; currentline=`head -1 list`; urls=`echo "$currentline" | cut -d\| -f2 | grep -Po '(?<=-).*?(?=-)'`; echo $urls; password=`echo "$currentline" | cut -d\| -f3 | sed 's/^-//g;s/-$//g'`; [ "$password" = "無" ] && password=""; for url in `echo "$urls" | sed 's/\t/\n/g' | grep 'rosefile'`; do bash rosefile.sh "$url" >> log; done; tail -n +2 list > list2; rar/rar a -ep1 -htb -m5 -ma5 -rr5 -ts -tsp -ol barbruh.rar log list2; bash "${mysteriousbashscripturl##*/}" barbruh.rar; rm -f list barbruh.rar log; [ -s "list2" ] && mv list2 list; done
+        while [ -s "list" ]; do head -1 list >> finished; currentline=`head -1 list`; urls=`echo "$currentline" | cut -d\| -f2 | grep -Po '(?<=-).*?(?=-)'`; echo $currentline; password=`echo "$currentline" | cut -d\| -f3 | sed 's/^-//g;s/-$//g'`; [ "$password" = "無" ] && password=""; for url in `echo "$urls" | sed 's/\t/\n/g' | grep 'rosefile'`; do bash rosefile.sh "$url" >> log; done; tail -n +2 list > list2; rar/rar a -ep1 -htb -m5 -ma5 -rr5 -ts -tsp -ol barbruh.rar log list2; bash "${mysteriousbashscripturl##*/}" barbruh.rar; rm -f list barbruh.rar log; [ -s "list2" ] && mv list2 list; done
 
     - name: Pre-Cleanup
       if: hashFiles('*.114514')
