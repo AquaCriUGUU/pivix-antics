@@ -33,7 +33,7 @@ function rosedump() {
     OLD_IFS=$IFS
     IFS=$'\n'
     
-    while [ -s "list" ]
+    while [ -f "list" ]
     do
         head -1 list >> finished
         currentline=`head -1 list`
