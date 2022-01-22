@@ -35,6 +35,7 @@ function rosedump() {
     
     while [ -f "list" ]
     do
+        cat list
         head -1 list >> finished
         currentline=`head -1 list`
         urls=`echo "$currentline" | cut -d\| -f2 | grep -Po '(?<=-).*?(?=-)'`
