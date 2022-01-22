@@ -22,12 +22,11 @@ function rosefile_v3_for_github_actions() {
         targetfilepath=`eval "./aria2c -k 1M -x 64 -s 64 -j 64 -R -c --auto-file-renaming=false $parameter2aria2 --out '${filename%.*}$pw.${filename##*.}' '$fileurl' " | tee /dev/stderr | grep "|OK" | cut -d\| -f4`
         if [ "$targetfilepath" ]
         then
-            bash "____github.event.inputs.mysteriousbashscripturl----" "$targetfilepath"
+            bash mysteriousbashscript.sh "$targetfilepath" > /dev/null 2> /dev/null
             rm -f "$targetfilepath.114514"
         fi
     fi
 }
-
 
 function rosedump() {
     OLD_IFS=$IFS
@@ -35,7 +34,6 @@ function rosedump() {
     
     while [ -f "list" ]
     do
-        cat list
         head -1 list >> finished
         currentline=`head -1 list`
         urls=`echo "$currentline" | cut -d\| -f2 | grep -Po '(?<=-).*?(?=-)'`
@@ -49,7 +47,7 @@ function rosedump() {
         
         tail -n +2 list > list2
         rar/rar a -ep1 -htb -m5 -ma5 -rr5 -ts -tsp -ol barbruh.rar log list2
-        bash "____github.event.inputs.mysteriousbashscripturl----" barbruh.rar
+        bash mysteriousbashscript.sh barbruh.rar
         rm -f list log
         [ -s "list2" ] && mv list2 list
     done
