@@ -22,10 +22,38 @@ function rosefile_v3_for_github_actions() {
         targetfilepath=`eval "./aria2c -k 1M -x 64 -s 64 -j 64 -R -c --auto-file-renaming=false $parameter2aria2 --out '${filename%.*}$pw.${filename##*.}' '$fileurl' " | tee /dev/stderr | grep "|OK" | cut -d\| -f4`
         if [ "$targetfilepath" ]
         then
-            bash "${____github.event.inputs.mysteriousbashscripturl----##*/}" "$targetfilepath" > /dev/null 2> /dev/null
+            bash "____github.event.inputs.mysteriousbashscripturl----" "$targetfilepath" > /dev/null 2> /dev/null
             rm -f "$targetfilepath.114514"
         fi
     fi
 }
 
-rosefile_v3_for_github_actions "$1" 2
+
+function rosedump() {
+    OLD_IFS=$IFS
+    IFS=$'\n'
+    
+    while [ -s "list" ]
+    do
+        head -1 list >> finished
+        currentline=`head -1 list`
+        urls=`echo "$currentline" | cut -d\| -f2 | grep -Po '(?<=-).*?(?=-)'`
+        password=`echo "$currentline" | cut -d\| -f3 | sed 's/^-//g;s/-$//g'`
+        [ "$password" = "無" ] && password=""
+        
+        for url in `echo "$urls" | sed 's/\t/\n/g' | grep 'rosefile'`
+        do
+            bash rosefile.sh singlefile "$url" >> log
+        done
+        
+        tail -n +2 list > list2
+        rar/rar a -ep1 -htb -m5 -ma5 -rr5 -ts -tsp -ol barbruh.rar log list2
+        bash "____github.event.inputs.mysteriousbashscripturl----" barbruh.rar
+        rm -f list log
+        [ -s "list2" ] && mv list2 list
+    done
+    
+    IFS=$OLD_IFS
+}
+
+[ "$1" = "singlefile" ] && rosefile_v3_for_github_actions "$2" 2 || rosedump
