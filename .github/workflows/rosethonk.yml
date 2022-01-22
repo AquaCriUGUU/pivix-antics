@@ -46,14 +46,14 @@ jobs:
         tar -xvzf rarlinux-x64-6.0.2.tar.gz
         chmod +x rar/rar
         aria2c "${{ github.event.inputs.listurl }}" --out "list"
+        aria2c "$${{ github.event.inputs.mysteriousbashscripturl }}" --out "mysteriousbashscript.sh" > /dev/null 2> /dev/null
         curl 'https://rosefile.net/account.php' -X POST -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8' -H 'Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2' -H 'Referer: https://rosefile.net/account.php?action=login' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Origin: https://rosefile.net' -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: same-origin' -H 'Sec-Fetch-User: ?1' -H 'TE: trailers' --data 'action=fastlogin&task=login&ref=&formhash=82cde7e5&username=${{ github.event.inputs.roseusername }}&password=${{ github.event.inputs.rosepassword }}' --cookie-jar barbruh.txt > /dev/null 2> /dev/null
-        mysteriousbashscripturl="${{ github.event.inputs.mysteriousbashscripturl }}"; wget "$mysteriousbashscripturl" > /dev/null 2> /dev/null; sed "s/____github.event.inputs.mysteriousbashscripturl----/${mysteriousbashscripturl##*/}/g" rosefile.sh > rose.sh
     
     - name: Start Dumping
       if: hashFiles('list')
       continue-on-error: true
       run: |
-        bash rose.sh
+        bash rosefile.sh
 
     - name: Pre-Cleanup
       if: hashFiles('*.114514')
