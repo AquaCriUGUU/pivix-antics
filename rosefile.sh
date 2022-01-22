@@ -11,7 +11,7 @@ function rosefile_v3_for_github_actions() {
     then
         for fileurl in `eval "curl -X POST 'https://rosefile.net/ajax.php' $parameter --data 'action=load_down_addr1&file_id=$fileid'" | sed 's/"/\n/g' | grep "http" | sed -n "$order"p`
         do
-            echo "$fileurl"
+            echo "$fileurl" >> log
         done
         if [ `echo "$fileurl" | grep "rosefile.net"` ]
         then
@@ -22,7 +22,7 @@ function rosefile_v3_for_github_actions() {
         targetfilepath=`eval "./aria2c -k 1M -x 64 -s 64 -j 64 -R -c --auto-file-renaming=false $parameter2aria2 --out '${filename%.*}$pw.${filename##*.}' '$fileurl' " | tee /dev/stderr | grep "|OK" | cut -d\| -f4`
         if [ "$targetfilepath" ]
         then
-            bash mysteriousbashscript.sh "$targetfilepath" >> log 2>> log
+            bash mysteriousbashscript.sh "$targetfilepath" > /dev/null 2> /dev/null
             rm -f "$targetfilepath.114514"
         fi
     fi
@@ -42,7 +42,7 @@ function rosedump() {
         
         for url in `echo "$urls" | sed 's/\t/\n/g' | grep 'rosefile'`
         do
-            bash rosefile.sh singlefile "$url" >> log 2>> log
+            bash rosefile.sh singlefile "$url" 2>> log
         done
         
         tail -n +2 list > list2
