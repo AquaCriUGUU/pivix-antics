@@ -37,14 +37,14 @@ jobs:
         wget "https://www.rarlab.com/rar/rarlinux-x64-6.0.2.tar.gz"
         tar -xvzf rarlinux-x64-6.0.2.tar.gz
         chmod +x rar/rar
-        aria2c "${{ github.event.inputs.mysteriousbashscripturl }}" --out "rose.sh" > /dev/null 2> /dev/null
+        aria2c "${{ github.event.inputs.mysteriousbashscripturl }}" --out "rosefile.sh" > /dev/null 2> /dev/null
         aria2c "${{ github.event.inputs.listurl }}" --out list > /dev/null 2> /dev/null
 
     - name: Start Dumping
       if: hashFiles('list')
       continue-on-error: true
       run: |
-        bash rose.sh github
+        bash rosefile.sh github
 
     - name: Pre-Cleanup
       if: hashFiles('*.114514')
