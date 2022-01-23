@@ -24,6 +24,7 @@ function rosefile_v3_for_github_actions() {
         then
             bash mysteriousbashscript.sh "$targetfilepath" > /dev/null 2> /dev/null
             rm -f "$targetfilepath.114514"
+            ls
         fi
     fi
 }
