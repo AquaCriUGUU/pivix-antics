@@ -16,6 +16,10 @@ on:
         description: 'URL of the mysterious bash script that would apply for every rar archive made in the process: '
         default: ''
         required: true
+      singlelink:
+        description: 'when this link of rosefile was provided, this antics will work on single file mode: '
+        default: ''
+        required: false
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -44,17 +48,4 @@ jobs:
       if: hashFiles('list')
       continue-on-error: true
       run: |
-        bash rosefile.sh github
-
-    - name: Pre-Cleanup
-      if: hashFiles('*.114514')
-      run: |
-        for file in `ls | grep -E "\.114514$"`; do mv "$file" "${file%.114514}"; done
-
-    - name: Cleanup
-      if: hashFiles('*.rar')
-      run: |
-        ls -lh
-        echo
-        stat *
-        rm *.rar -f
+        [ "${{ github.event.inputs.singlelink }}" ] && bash rosefile.sh singlelink "${{ github.event.inputs.singlelink }}" || bash rosefile.sh github
