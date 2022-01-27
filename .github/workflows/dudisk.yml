@@ -50,7 +50,7 @@ jobs:
     - name: Generating Links
       continue-on-error: true
       run: |
-        "${{ github.event.inputs.scripturl }}" && bash dudisk.sh "scriptmode" "${{ github.event.inputs.scripturl }}" || bash dudisk.sh "${{ github.event.inputs.sharelink }}" "${{ github.event.inputs.password }}"
+        [ "${{ github.event.inputs.scripturl }}" ] && bash dudisk.sh "scriptmode" "${{ github.event.inputs.scripturl }}" || bash dudisk.sh "${{ github.event.inputs.sharelink }}" "${{ github.event.inputs.password }}"
 
     - name: Downloading and Reuploading
       continue-on-error: true
