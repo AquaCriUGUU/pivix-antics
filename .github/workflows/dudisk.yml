@@ -51,4 +51,4 @@ jobs:
     - name: Downloading and Reuploading
       continue-on-error: true
       run: |
-        for line in `cat download.*`; do eval "$line"; for file in `ls temp`; do bash mysteriousbashscript.sh "temp/$file"; rm temp/* -f; done; done
+        mkdir temp; for line in `cat download.*`; do eval "$line"; for file in `ls temp`; do bash mysteriousbashscript.sh "temp/$file"; rm temp/* -f; done; done
