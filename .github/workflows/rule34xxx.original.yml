@@ -84,6 +84,7 @@ jobs:
         [ "${{ github.event.inputs.mode }}" = "list" ] && aria2c "${{ github.event.inputs.listurl }}" --out "list" || bash ../rule34xxx.sh "${{ github.event.inputs.loglevel }}" "${{ github.event.inputs.tags }}"
         mv list ../
         cd ..
+        sed -i 's/us.rule34.xxx/rule34.xxx/g' list
     
     - name: Upload List
       uses: actions/upload-artifact@v2
