@@ -1,6 +1,6 @@
 [ -d "wiebitte" ] || mkdir wiebitte
 parameters=`cat ../parameters.txt`
-[ "$parameters" ] || parameters="--H 'Referer: https://www.pixiv.net/artworks/1145141919810' "
+[ "$parameters" ] || parameters="-H 'Referer: https://www.pixiv.net/artworks/1145141919810' "
 parameters4aria2="${parameters//--compressed/ }"
 parameters4aria2="${parameters4aria2//-H/--header}"
 while ( [ `du -s "wiebitte" | grep -Eo "[0-9]*\s" | grep -Eo "[0-9]*"` -lt $((____github.event.inputs.quota----*1024)) ] && [ -s "list" ] )
