@@ -10,7 +10,10 @@ do
     rm -f list
     [ -s "list2" ] && mv list2 list
     cd wiebitte
-    eval "../aria2c -k 1M -x 1 -s 1 -j 64 -R -c --auto-file-renaming=false -i list"
+    while [ -s list ]
+    do
+        eval "../aria2c -k 1M -x 1 -s 1 -j 64 -R -c --auto-file-renaming=false $parameters4aria2 -i list --save-session list"
+    done
     rm list -f
     cd ..
 done
