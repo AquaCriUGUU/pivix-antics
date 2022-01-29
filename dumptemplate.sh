@@ -10,7 +10,7 @@ do
     rm -f list
     [ -s "list2" ] && mv list2 list
     cd wiebitte
-    eval "../aria2c -k 1M -x 1 -s 1 -j 64 -R -c --auto-file-renaming=false $parameters4aria2 -i list"
+    eval "../aria2c -k 1M -x 1 -s 1 -j 64 -R -c --auto-file-renaming=false -i list"
     rm list -f
     cd ..
 done
