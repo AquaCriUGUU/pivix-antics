@@ -79,7 +79,6 @@ jobs:
         wget "https://www.rarlab.com/rar/rarlinux-x64-6.0.2.tar.gz"
         tar -xvzf rarlinux-x64-6.0.2.tar.gz
         chmod +x rar/rar
-        echo "        "> parameters.txt
         mkdir wiebitte; cd wiebitte
         [ "${{ github.event.inputs.mode }}" = "list" ] && aria2c "${{ github.event.inputs.listurl }}" --out "list" || bash ../rule34xxx.sh "${{ github.event.inputs.loglevel }}" "${{ github.event.inputs.tags }}"
         mv list ../
